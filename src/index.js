@@ -57,6 +57,13 @@ export default {
     }
 
     // Default: Ambil file statis lainnya (CSS, JS, Gambar)
+    // ... (kode routing sebelumnya)
+    if (url.pathname === '/authority' || url.pathname === '/Authority.html') {
+      return env.ASSETS.fetch(new Request(new URL('/Authority.html', request.url), request));
+    }
+
+    // Default: Ambil file statis lainnya
+    
     return env.ASSETS.fetch(request);
   },
 };
