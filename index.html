@@ -3,62 +3,313 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>TheMoon</title>
-
+  <title>Login - AURA.OS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg-deep: #0f172a;
+      --primary: #6366f1;
+      --accent-cyan: #00f0ff;
+      --accent-violet: #bc13fe;
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Outfit', sans-serif;
+      --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
+      --shadow-glow-cyan: 0 0 25px rgba(0, 240, 255, 0.4);
     }
-
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      margin: 0;
+      background: var(--bg-deep);
+      color: var(--text-main);
+      font-family: var(--font-body);
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-align: center;
-      background:
-        radial-gradient(circle at top, #35406b, #10152b 55%, #050711);
+      align-items: center;
+      overflow: hidden;
+      position: relative;
     }
 
-    .box {
-      width: 90%;
-      max-width: 650px;
-      padding: 50px 25px;
-      border: 1px solid rgba(255,255,255,0.18);
+    .noise-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 1; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .bg-glow {
+      position: fixed; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none; z-index: 0;
+    }
+    .glow-1 { top: -300px; right: -300px; }
+    .glow-2 { bottom: -300px; left: -300px; background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%); }
+
+    .login-card {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 24px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      border: 1px solid var(--glass-border);
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      padding: 50px 40px;
+      z-index: 10;
+      box-shadow: var(--shadow-glow);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
-    h1 {
-      margin: 0 0 15px;
-      font-size: 52px;
+    .login-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 24px; padding: 2px;
+      background: linear-gradient(45deg, var(--accent-cyan), var(--accent-violet), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      opacity: 0.5; pointer-events: none;
     }
 
-    p {
-      margin: 0;
-      color: #d6daf0;
-      font-size: 18px;
-      line-height: 1.6;
+    .logo-section {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    .moon {
-      margin-bottom: 20px;
-      font-size: 80px;
+    .logo-icon {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; color: white;
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+      margin: 0 auto 20px auto;
     }
+
+    .logo-text h1 {
+      font-family: var(--font-head);
+      font-size: 28px; font-weight: 700;
+      background: linear-gradient(to right, #fff, var(--accent-cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    
+    .logo-text p {
+      color: var(--text-dim); font-size: 14px; margin-top: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .form-label {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px; font-weight: 600; font-size: 14px;
+      color: var(--text-dim);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      color: var(--text-main);
+      font-family: var(--font-body); font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: var(--shadow-glow-cyan);
+    }
+
+    .input-icon {
+      position: absolute; left: 18px; top: 44px;
+      color: var(--text-dim); font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .form-input:focus + .input-icon, .form-input:not(:placeholder-shown) + .input-icon {
+      color: var(--accent-cyan);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent-violet));
+      border: none;
+      color: white; font-weight: 700; font-size: 16px;
+      cursor: pointer; transition: all 0.3s;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+      margin-top: 10px;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-login:disabled {
+      opacity: 0.7; cursor: not-allowed; transform: none;
+    }
+
+    .alert-box {
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+      font-size: 14px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .alert-error {
+      background: rgba(231, 76, 60, 0.15);
+      border: 1px solid rgba(231, 76, 60, 0.3);
+      color: #e74c3c;
+    }
+
+    .alert-success {
+      background: rgba(46, 204, 113, 0.15);
+      border: 1px solid rgba(46, 204, 113, 0.3);
+      color: #2ecc71;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .spinner {
+      width: 20px; height: 20px;
+      border: 3px solid transparent;
+      border-top: 3px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
   </style>
 </head>
-
 <body>
-  <div class="box">
-    <div class="moon">🌙</div>
-    <h1>TheMoon</h1>
-    <p>Website pertama saya berhasil online menggunakan Cloudflare Pages.</p>
+  <div class="noise-overlay"></div>
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
+  <div class="login-card">
+    <div class="logo-section">
+      <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
+      <div class="logo-text">
+        <h1>AURA.OS LOGIN</h1>
+        <p>Authorized Personnel Only</p>
+      </div>
+    </div>
+
+    <div class="alert-box" id="alertBox">
+      <i class="fas fa-exclamation-circle" id="alertIcon"></i>
+      <span id="alertMsg"></span>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" id="username" class="form-input" placeholder="Masukkan username" required autocomplete="off">
+        <i class="fas fa-user input-icon"></i>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
+        <i class="fas fa-lock input-icon"></i>
+      </div>
+
+      <button type="submit" class="btn-login" id="btnLogin">
+        <div class="spinner" id="spinner"></div>
+        <i class="fas fa-sign-in-alt" id="btnIcon"></i>
+        <span id="btnText">Masuk ke Sistem</span>
+      </button>
+    </form>
   </div>
+
+  <script>
+    let isLoggingIn = false;
+
+    // ── DATA DUMMY UNTUK LOGIN ──
+    // Karena tidak ada backend (Google Apps Script), kita buatkan akun dummy di sini.
+    // Silakan ubah username/password di bawah sesuai keinginan.
+    const DUMMY_USERS = [
+      { username: "admin", password: "admin123", role: "ADMIN" },
+      { username: "operator", password: "operator123", role: "OPERATOR" }
+    ];
+
+    function handleLogin(e) {
+      e.preventDefault();
+      if (isLoggingIn) return;
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        showAlert('Harap isi Username dan Password!', 'error');
+        return;
+      }
+
+      isLoggingIn = true;
+      document.getElementById('btnLogin').disabled = true;
+      document.getElementById('spinner').style.display = 'block';
+      document.getElementById('btnIcon').style.display = 'none';
+      document.getElementById('btnText').textContent = 'Memverifikasi...';
+
+      // Simulasi panggilan ke Backend (Delay 1.5 detik)
+      setTimeout(function() {
+        let userFound = DUMMY_USERS.find(u => u.username === username && u.password === password);
+
+        isLoggingIn = false;
+        document.getElementById('btnLogin').disabled = false;
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('btnIcon').style.display = 'inline';
+        document.getElementById('btnText').textContent = 'Masuk ke Sistem';
+
+        if (userFound) {
+          showAlert('Login berhasil! Mengarahkan ke Dashboard...', 'success');
+          
+          // Arahkan ke Dashboard.html setelah 1.5 detik
+          setTimeout(() => {
+            // Ganti URL ke Dashboard.html di Cloudflare/GitHub Anda
+            window.location.href = '/Dashboard.html?authToken=' + encodeURIComponent(userFound.username);
+          }, 1500);
+        } else {
+          showAlert('Username atau Password salah!', 'error');
+        }
+      }, 1500); // 1500ms = 1.5 detik
+    }
+
+    function showAlert(message, type) {
+      const box = document.getElementById('alertBox');
+      const icon = document.getElementById('alertIcon');
+      const msg = document.getElementById('alertMsg');
+
+      box.style.display = 'flex';
+      box.className = `alert-box alert-${type}`;
+      icon.className = type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
+      msg.textContent = message;
+
+      if (type === 'error') {
+        setTimeout(() => { box.style.display = 'none'; }, 5000);
+      }
+    }
+  </script>
 </body>
 </html>
