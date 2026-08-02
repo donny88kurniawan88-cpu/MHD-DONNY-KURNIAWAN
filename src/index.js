@@ -8,6 +8,7 @@ export default {
     if (url.pathname === '/authority' || url.pathname === '/Authority.html') return env.ASSETS.fetch(new Request(new URL('/Authority.html', request.url), request));
     if (url.pathname === '/syair' || url.pathname === '/Syair.html') return env.ASSETS.fetch(new Request(new URL('/Syair.html', request.url), request));
     if (url.pathname === '/prediksi' || url.pathname === '/Prediksi.html') return env.ASSETS.fetch(new Request(new URL('/Prediksi.html', request.url), request));
+    if (url.pathname === '/validator' || url.pathname === '/Validator.html') return env.ASSETS.fetch(new Request(new URL('/Validator.html', request.url), request));
 
     // Fungsi helper untuk cek role admin dari header
     async function isAdmin(req) {
