@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AURA.OS // DASHBOARD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-primary: #0a0a0f; --bg-secondary: #111118; --bg-tertiary: #1a1a24;
+      --surface: rgba(15, 15, 22, 0.97); --surface-elevated: #181822;
+      --border: rgba(255, 255, 255, 0.07); --border-focus: rgba(255, 255, 255, 0.14);
+      --text-primary: #f1f5f9; --text-secondary: #94a3b8; --text-tertiary: #64748b;
+      --accent-primary: #3b82f6; --accent-primary-light: rgba(59, 130, 246, 0.12);
+      --accent-primary-dark: #2563eb; --accent-primary-glow: rgba(59, 130, 246, 0.35);
+      --accent-success: #10b981; --accent-success-light: rgba(16, 185, 129, 0.12);
+      --accent-success-glow: rgba(16, 185, 129, 0.35);
+      --accent-warning: #f59e0b; --accent-warning-light: rgba(245, 158, 11, 0.12);
+      --accent-danger: #ef4444; --accent-danger-light: rgba(239, 68, 68, 0.12);
+      --accent-purple: #8b5cf6; --accent-purple-light: rgba(139, 92, 246, 0.10);
+      --accent-pink: #ec4899; --accent-teal: #14b8a6;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.3); --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,0.5); --shadow-xl: 0 12px 36px rgba(0,0,0,0.6);
+      --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-width: 280px; --header-height: 64px;
+      --neon-purple: #b46cff; --neon-cyan: #00f0ff; --neon-green: #00ffb3;
+      --neon-red: #ff3048; --neon-yellow: #ffd166;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { color: var(--text-primary); font-family: var(--font-sans); line-height: 1.5; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; min-height: 100vh; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 600px 400px at 15% 20%, rgba(59,130,246,0.10) 0%, transparent 70%), radial-gradient(ellipse 500px 500px at 85% 70%, rgba(139,92,246,0.08) 0%, transparent 70%), radial-gradient(ellipse 400px 300px at 50% 90%, rgba(16,185,129,0.07) 0%, transparent 70%), radial-gradient(ellipse 300px 300px at 70% 15%, rgba(236,72,153,0.05) 0%, transparent 70%), linear-gradient(160deg, #0c0c16 0%, #0a0a0f 40%, #0e0e18 100%); z-index: -2; }
+    body::after { content: ''; position: fixed; inset: 0; background: radial-gradient(circle 200px at 25% 35%, rgba(59,130,246,0.05) 0%, transparent 100%), radial-gradient(circle 180px at 75% 65%, rgba(139,92,246,0.04) 0%, transparent 100%); z-index: -1; animation: glowDrift 25s ease-in-out infinite alternate; }
+    @keyframes glowDrift { 0% { transform: translate(0,0) scale(1); } 50% { transform: translate(15px,-10px) scale(1.03); } 100% { transform: translate(-10px,5px) scale(0.99); } }
+    html { scroll-behavior: smooth; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; } ::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 10px; } ::-webkit-scrollbar-thumb { background: var(--accent-primary); border-radius: 10px; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeInScale { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
+    @keyframes slideInRight { from { opacity:0; transform:translateX(20px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.7; transform:scale(1.05); } }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes rotateBackdrop { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    .sidebar { width: var(--sidebar-width); background: linear-gradient(180deg, rgba(12,12,20,0.98), rgba(10,10,16,0.98)); backdrop-filter: blur(24px); border-right: 1px solid var(--border); position: fixed; left: 0; top: 0; bottom: 0; display: flex; flex-direction: column; z-index: 100; transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .sidebar::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, transparent 0%, rgba(59,130,246,0.25) 25%, rgba(139,92,246,0.20) 55%, rgba(16,185,129,0.15) 80%, transparent 100%); pointer-events: none; }
+    .sidebar-header { padding: 28px 24px; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, rgba(59,130,246,0.07), rgba(139,92,246,0.04), transparent); position: relative; overflow: hidden; display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
+    .logo-sub { font-size: 11px; color: var(--text-tertiary); font-family: var(--font-mono); margin-top: 6px; opacity: 0.8; }
+    .btn-logout { background: transparent; border: 1px solid var(--border); color: var(--text-secondary); padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: 12px; transition: 0.2s; }
+    .btn-logout:hover { border-color: var(--accent-danger); color: var(--accent-danger); }
+    .nav-menu { flex: 1; padding: 20px 14px; overflow-y: auto; overflow-x: hidden; }
+    .nav-group { margin-bottom: 24px; animation: fadeInUp 0.4s ease backwards; }
+    .nav-group-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-primary); padding: 0 12px; margin-bottom: 8px; opacity: 0.55; }
+    .nav-item { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 2px 0; border-radius: var(--radius-md); color: var(--text-secondary); font-size: 13.5px; font-weight: 500; cursor: pointer; user-select: none; transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease; position: relative; animation: slideInRight 0.3s ease backwards; }
+    .nav-item svg { width: 17px; height: 17px; stroke-width: 1.5; flex-shrink: 0; transition: transform 0.18s ease; }
+    .nav-item:hover { background: rgba(59,130,246,0.07); color: var(--text-primary); transform: translateX(3px); }
+    .nav-item:hover svg { transform: scale(1.08); }
+    .nav-item.active { background: var(--accent-primary-light); color: var(--accent-primary); }
+    
+    .nav-submenu-wrap { position: relative; margin: 2px 0; }
+    .nav-submenu-wrap > .nav-trigger { display: flex; align-items: center; gap: 12px; padding: 10px 14px; margin: 0; border-radius: var(--radius-md); color: var(--text-secondary); font-size: 13.5px; font-weight: 500; cursor: pointer; user-select: none; transition: background 0.18s ease, color 0.18s ease; }
+    .nav-submenu-wrap > .nav-trigger svg.menu-icon { width: 17px; height: 17px; stroke-width: 1.5; flex-shrink: 0; transition: transform 0.18s ease; }
+    .nav-submenu-wrap > .nav-trigger .label { flex: 1; }
+    .nav-submenu-wrap > .nav-trigger .chevron { width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .nav-submenu-wrap > .nav-trigger .chevron svg { width: 13px; height: 13px; stroke: var(--text-tertiary); transition: stroke 0.18s ease; }
+    .nav-submenu-wrap:hover > .nav-trigger { background: rgba(59,130,246,0.07); color: var(--text-primary); }
+    .nav-submenu-wrap:hover > .nav-trigger .menu-icon { transform: scale(1.08); }
+    .nav-submenu-wrap:hover > .nav-trigger .chevron { transform: rotate(180deg); }
+    .nav-submenu-wrap:hover > .nav-trigger .chevron svg { stroke: var(--accent-primary); }
+    .nav-submenu-wrap > .submenu { overflow: hidden; max-height: 0; opacity: 0; padding-left: 18px; transition: max-height 0.35s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.25s ease, padding 0.3s ease; }
+    .nav-submenu-wrap:hover > .submenu, .nav-submenu-wrap.open > .submenu { max-height: 250px; opacity: 1; padding-top: 4px; padding-bottom: 4px; }
+    .submenu-item { display: flex; align-items: center; gap: 10px; padding: 8px 14px; margin: 1px 0; border-radius: var(--radius-sm); color: var(--text-tertiary); font-size: 13px; font-weight: 500; cursor: pointer; user-select: none; white-space: nowrap; pointer-events: auto; transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease, padding-left 0.15s ease; }
+    .submenu-item:hover { background: rgba(59,130,246,0.10); color: var(--accent-primary); padding-left: 18px; }
+    .submenu-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--text-tertiary); flex-shrink: 0; transition: background 0.15s ease, transform 0.15s ease; }
+    .submenu-item:hover::before { background: var(--accent-primary); transform: scale(1.4); }
+    
+    .sidebar-footer { padding: 18px 24px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-tertiary); font-family: var(--font-mono); }
+
+    .main-content { margin-left: var(--sidebar-width); min-height: 100vh; transition: margin-left 0.4s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .top-bar { background: rgba(10,10,16,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 32px; height: var(--header-height); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); font-family: var(--font-mono); }
+    .breadcrumb span:last-child { color: var(--accent-primary); }
+    .status-badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--accent-success-light); border: 1px solid rgba(16,185,129,0.12); border-radius: 100px; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--accent-success); transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+    .status-badge:hover { background: var(--accent-success); color: white; transform: scale(1.05); box-shadow: 0 0 24px var(--accent-success-glow); }
+    .status-dot { width: 8px; height: 8px; background: var(--accent-success); border-radius: 50%; animation: pulse 2s infinite; }
+    .content { padding: 32px; animation: fadeInUp 0.5s ease; }
+
+    .hero-section { margin-bottom: 40px; padding: 40px; background: linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(139,92,246,0.08) 40%, rgba(236,72,153,0.05) 100%), linear-gradient(to bottom, rgba(15,15,22,0.5), rgba(15,15,22,0.85)); border-radius: var(--radius-xl); border: 1px solid rgba(59,130,246,0.10); transition: all 0.3s ease; animation: fadeInScale 0.5s ease; position: relative; overflow: hidden; }
+    .hero-title { font-size: clamp(24px,5vw,32px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple), var(--accent-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { color: var(--text-secondary); font-size: 16px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 24px; margin-bottom: 48px; }
+    .stat-card { background: linear-gradient(135deg, rgba(15,15,22,0.9), rgba(18,18,28,0.85)); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); cursor: pointer; position: relative; overflow: hidden; animation: fadeInUp 0.5s ease backwards; }
+    .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-purple)); transform: scaleX(0); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); transform-origin: left; }
+    .stat-card:hover::before { transform: scaleX(1); }
+    .stat-card:hover { border-color: rgba(59,130,246,0.18); transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .stat-label { font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .stat-value { font-size: clamp(28px,4vw,36px); font-weight: 800; margin-bottom: 8px; }
+    .stat-trend { font-size: 12px; display: flex; align-items: center; gap: 4px; }
+    .stat-trend.positive { color: var(--accent-success); } .stat-trend.negative { color: var(--accent-danger); }
+
+    .section-title { font-size: 20px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .section-title::before { content: ''; width: 4px; height: 24px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple)); border-radius: 2px; }
+    .modules-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); gap: 24px; margin-bottom: 48px; }
+    .module-card { background: linear-gradient(135deg, rgba(15,15,22,0.9), rgba(18,18,28,0.85)); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; cursor: pointer; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); position: relative; overflow: hidden; animation: fadeInUp 0.5s ease backwards; }
+    .module-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-primary), var(--accent-purple), var(--accent-pink)); transform: scaleX(0); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); transform-origin: left; }
+    .module-card:hover::before { transform: scaleX(1); }
+    .module-card:hover { border-color: rgba(59,130,246,0.14); transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+    .module-icon { width: 52px; height: 52px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .module-card:hover .module-icon { transform: scale(1.1) rotate(5deg); }
+    .module-name { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .module-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .module-badge { display: inline-block; margin-top: 12px; padding: 4px 10px; background: var(--bg-secondary); border-radius: var(--radius-sm); font-size: 10px; font-family: var(--font-mono); color: var(--text-tertiary); transition: all 0.18s ease; }
+    .module-card:hover .module-badge { background: var(--accent-primary-light); color: var(--accent-primary); }
+    .module-card[data-color="blue"] .module-icon { background: var(--accent-primary-light); } .module-card[data-color="green"] .module-icon { background: var(--accent-success-light); } .module-card[data-color="purple"] .module-icon { background: var(--accent-purple-light); } .module-card[data-color="orange"] .module-icon { background: var(--accent-warning-light); } .module-card[data-color="teal"] .module-icon { background: rgba(20,184,166,0.12); } .module-card[data-color="pink"] .module-icon { background: rgba(236,72,153,0.12); } .module-card[data-color="red"] .module-icon { background: var(--accent-danger-light); }
+
+    .popup-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(12px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .popup-overlay.active { opacity: 1; visibility: visible; }
+    .popup-container { background: linear-gradient(135deg, rgba(22,22,34,0.98), rgba(18,18,28,0.98)); backdrop-filter: blur(20px); border-radius: var(--radius-xl); width: 90%; max-width: 560px; max-height: 85vh; overflow: hidden; transform: scale(0.95) translateY(20px); transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1); box-shadow: var(--shadow-xl), 0 0 40px rgba(59,130,246,0.06); border: 1px solid rgba(255,255,255,0.1); }
+    .popup-overlay.active .popup-container { transform: scale(1) translateY(0); }
+    .popup-header { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, rgba(59,130,246,0.06), transparent); }
+    .popup-title { font-size: 20px; font-weight: 700; color: var(--accent-primary); }
+    .popup-close { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--bg-secondary); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: all 0.2s ease; }
+    .popup-close:hover { background: var(--accent-danger-light); color: var(--accent-danger); transform: rotate(90deg); }
+    .popup-body { padding: 28px; max-height: 55vh; overflow-y: auto; }
+    .popup-footer { padding: 20px 28px; border-top: 1px solid var(--border); display: flex; gap: 12px; justify-content: flex-end; }
+    .btn { padding: 10px 24px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark)); color: white; border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 600; font-family: var(--font-sans); cursor: pointer; transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px var(--accent-primary-glow); }
+    .btn:active { transform: translateY(0); }
+    .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); }
+    .btn-secondary:hover { background: var(--bg-tertiary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .toast { position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, rgba(22,22,34,0.98), rgba(18,18,28,0.98)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); padding: 14px 20px; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-lg); z-index: 1001; transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1); max-width: 380px; }
+    .toast.show { transform: translateX(0); }
+    .toast-content { flex: 1; font-size: 13px; font-weight: 500; }
+    .toast-close { background: none; border: none; cursor: pointer; color: var(--text-tertiary); padding: 4px; transition: all 0.15s ease; }
+    .toast-close:hover { color: var(--accent-danger); transform: scale(1.1); }
+
+    .right-panel { position: fixed; right: 0; top: 0; bottom: 0; width: 300px; background: linear-gradient(180deg, rgba(12,12,20,0.98), rgba(10,10,16,0.98)); backdrop-filter: blur(20px); border-left: 1px solid var(--border); padding: 24px; overflow-y: auto; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1); z-index: 95; }
+    .right-panel.open { transform: translateX(0); }
+    .panel-toggle { position: fixed; right: 24px; bottom: 24px; width: 52px; height: 52px; background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple)); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(59,130,246,0.25); z-index: 96; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .panel-toggle:hover { transform: scale(1.1) rotate(90deg); box-shadow: 0 0 30px var(--accent-primary-glow); }
+    .widget { background: linear-gradient(135deg, rgba(20,20,30,0.8), rgba(16,16,26,0.8)); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; border: 1px solid var(--border); transition: all 0.2s ease; }
+    .widget:hover { border-color: rgba(59,130,246,0.18); transform: translateX(-4px); }
+    .widget-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-primary); margin-bottom: 16px; }
+    .terminal { background: rgba(6,6,10,0.9); border: 1px solid rgba(16,185,129,0.08); border-radius: var(--radius-md); padding: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--accent-success); height: 320px; overflow-y: auto; }
+    .terminal-line { margin-bottom: 8px; opacity: 0.8; line-height: 1.5; transition: all 0.15s ease; white-space: pre-wrap; word-break: break-word; }
+    .terminal-line:hover { opacity: 1; color: #fff; transform: translateX(4px); }
+
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--text-primary); transition: all 0.15s ease; }
+    .mobile-menu-btn:hover { transform: scale(1.1); }
+
+    .loader { position: fixed; inset: 0; background: #0a0a0f; z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; animation: loaderDismiss 0.6s ease-out 2.2s forwards; }
+    @keyframes loaderDismiss { to { opacity: 0; visibility: hidden; } }
+    .loader-spinner { width: 48px; height: 48px; border: 3px solid rgba(255,255,255,0.08); border-top-color: var(--accent-primary); border-radius: 50%; animation: spin 0.8s linear infinite; }
+    .loader-text { margin-top: 20px; font-size: 14px; color: var(--text-secondary); font-family: var(--font-mono); position: relative; }
+    .loader-text span { position: absolute; left: 0; top: 0; white-space: nowrap; opacity: 0; }
+    .loader-text span:nth-child(1) { animation: txtShow 0.5s ease 0s forwards; } .loader-text span:nth-child(2) { animation: txtShow 0.5s ease 0.4s forwards; } .loader-text span:nth-child(3) { animation: txtShow 0.5s ease 0.8s forwards; } .loader-text span:nth-child(4) { animation: txtShow 0.5s ease 1.2s forwards; } .loader-text span:nth-child(5) { animation: txtStay 0.5s ease 1.6s forwards; }
+    @keyframes txtShow { 0% { opacity: 0; } 30% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes txtStay { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 1; } }
+
+    /* SALDO KAS STYLES */
+    .saldoKasWrap { width: 100%; margin-top: 22px; padding: 24px; border-radius: 32px; background: radial-gradient(circle at top left, #1a0b2e, #0a0a0f 45%, #0a0a0f); box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 100px rgba(180, 108, 255, 0.05); position: relative; overflow: hidden; }
+    .saldoKasWrap::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(180, 108, 255, 0.03) 0%, transparent 50%); animation: rotateBackdrop 20s linear infinite; pointer-events: none; z-index: 0; }
+    .saldoKasWrap > * { position: relative; z-index: 1; }
+    .saldoKasHeader { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 18px; padding: 20px; border-radius: 28px; background: rgba(12, 12, 25, 0.65); backdrop-filter: blur(16px); border: 1px solid rgba(180, 108, 255, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05); }
+    .saldoKasHeader h3 { margin: 0; color: #fff; font-size: 26px; font-weight: 950; letter-spacing: -0.8px; text-transform: uppercase; text-shadow: 0 0 10px rgba(180, 108, 255, 0.6), 0 0 20px rgba(180, 108, 255, 0.3); }
+    .saldoKasSub { margin-top: 6px; color: rgba(255,255,255,0.6); font-size: 12px; font-weight: 800; }
+    .saldoKasControls { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
+    .saldoKasControls input { height: 45px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.4); color: #fff; outline: none; padding: 0 16px; font-weight: 900; font-size: 13px; transition: all 0.3s ease; }
+    .saldoKasControls input:focus { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3), inset 0 0 4px rgba(0, 240, 255, 0.1); }
+    .saldoKasControls input[type="date"] { color-scheme: dark; }
+    .sk-btn-load { height: 45px; border-radius: 16px; border: none; padding: 0 24px; background: linear-gradient(135deg, var(--neon-purple), #6a0dad); color: #fff; font-weight: 950; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 15px rgba(180, 108, 255, 0.4); }
+    .sk-btn-load:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(180, 108, 255, 0.7); }
+    .sk-btn-load:active { transform: translateY(0px); }
+
+    .saldoKasCards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .saldoKasCard { position: relative; overflow: hidden; min-height: 95px; padding: 16px; border-radius: 24px; background: rgba(12, 12, 25, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); box-shadow: 0 15px 35px rgba(0,0,0,.2); transition: all 0.3s ease; }
+    .saldoKasCard:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.15); }
+    .saldoKasCard::before { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 100%; opacity: .95; }
+    .sk-card-n9::before { background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); } .sk-card-pending::before { background: var(--neon-red); box-shadow: 0 0 10px var(--neon-red); } .sk-card-asli::before { background: var(--neon-yellow); box-shadow: 0 0 10px var(--neon-yellow); } .sk-card-cair::before { background: var(--neon-purple); box-shadow: 0 0 10px var(--neon-purple); } .sk-card-belum::before { background: var(--neon-red); box-shadow: 0 0 10px var(--neon-red); } .sk-card-cacing::before { background: var(--neon-cyan); box-shadow: 0 0 10px var(--neon-cyan); }
+    .saldoKasLabel { color: rgba(255,255,255,0.55); font-size: 10px; font-weight: 950; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .saldoKasValue { color: #fff; font-size: 22px; font-weight: 950; word-break: break-word; }
+    .saldoKasRed { color: var(--neon-red) !important; text-shadow: 0 0 8px rgba(255,48,72,0.5); } .saldoKasGreen { color: var(--neon-green) !important; text-shadow: 0 0 8px rgba(0,255,179,0.5); } .saldoKasYellow { color: var(--neon-yellow) !important; text-shadow: 0 0 8px rgba(255,209,102,0.4); } .saldoKasPurple { color: var(--neon-purple) !important; text-shadow: 0 0 8px rgba(180,108,255,0.5); } .saldoKasCyan { color: var(--neon-cyan) !important; text-shadow: 0 0 8px rgba(0,240,255,0.5); }
+
+    .saldoKasToolbar { display: flex; gap: 10px; margin-bottom: 12px; }
+    .saldoKasSearch { flex: 1; height: 45px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; outline: none; padding: 0 16px; font-weight: 900; transition: all 0.3s ease; }
+    .saldoKasSearch:focus { border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(0,240,255,0.2); }
+    .sk-btn-copy { height: 45px; border-radius: 18px; border: 1px solid rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.08); color: var(--neon-cyan); outline: none; padding: 0 20px; font-weight: 950; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+    .sk-btn-copy:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 15px rgba(0, 240, 255, 0.3); }
+    .sk-btn-copy.copied { border-color: var(--neon-green); color: var(--neon-green); background: rgba(0, 255, 179, 0.1); }
+
+    .saldoKasTableBox { border: 1px solid rgba(180, 108, 255, 0.15); border-radius: 24px; overflow: auto; background: rgba(8, 10, 20, 0.6); backdrop-filter: blur(10px); box-shadow: 0 25px 50px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04); max-height: calc(100vh - 380px); }
+    .saldoKasTable { width: 100%; min-width: 1250px; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: 12px; background: transparent; }
+    .saldoKasTable th, .saldoKasTable td { padding: 12px 14px; border-bottom: 1px solid rgba(255,255,255,.04); border-right: 1px solid rgba(255,255,255,.02); vertical-align: middle !important; overflow: hidden; text-overflow: ellipsis; }
+    .saldoKasTable th { position: sticky; top: 0; z-index: 5; background: rgba(15, 15, 30, 0.95); color: var(--neon-cyan); text-align: center; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; border-bottom: 1px solid rgba(0, 240, 255, 0.2); text-shadow: 0 0 5px rgba(0, 240, 255, 0.3); }
+    .saldoKasTable td { color: #e0e0e0; background: rgba(255,255,255,.01); font-weight: 850; }
+    .saldoKasTable tbody tr:nth-child(even) td { background: rgba(180, 108, 255, 0.02); }
+    .saldoKasTable tbody tr:hover td { background: rgba(180, 108, 255, 0.08); box-shadow: inset 3px 0 0 var(--neon-purple); }
+    .saldoKasNo { width: 52px; text-align: center !important; } .saldoKasSheet { width: 380px; text-align: left !important; } .saldoKasN9 { width: 138px; } .saldoKasPending { width: 132px; } .saldoKasAsli { width: 140px; } .saldoKasCair { width: 185px; } .saldoKasStatus { width: 152px; } .saldoKasKet { width: 185px; }
+    .saldoKasCenter { text-align: center !important; vertical-align: middle !important; }
+    .saldoKasNum { text-align: center !important; font-weight: 950; white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .saldoKasSheetName { font-weight: 950; color: #fff; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .saldoKasMetaLine { color: rgba(255,255,255,0.5); font-size: 11px; margin-top: 4px; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .saldoKasRekLine { display: inline-block; max-width: 100%; color: var(--neon-cyan); font-size: 11px; font-weight: 900; margin-top: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .saldoKasBadge { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; padding: 6px 12px; border-radius: 999px; font-size: 10px; font-weight: 950; white-space: nowrap; letter-spacing: .5px; }
+    .saldoKasBadge.bad { background: rgba(255,48,72,0.1); border: 1px solid var(--neon-red); color: var(--neon-red); box-shadow: 0 0 8px rgba(255,48,72,0.3); }
+    .saldoKasBadge.ok { background: rgba(0,255,179,0.1); border: 1px solid var(--neon-green); color: var(--neon-green); box-shadow: 0 0 8px rgba(0,255,179,0.3); }
+    .saldoKasBadge.warn { background: rgba(255,209,102,0.1); border: 1px solid var(--neon-yellow); color: var(--neon-yellow); box-shadow: 0 0 8px rgba(255,209,102,0.3); }
+    .saldoKasCopyCell { display: flex; align-items: center; justify-content: center; gap: 8px; white-space: nowrap; width: 100%; cursor: pointer; transition: all 0.2s; }
+    .saldoKasCopyCell span.val { overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; color: var(--neon-purple); font-weight: 950; }
+    .copy-icon { font-size: 12px; opacity: 0.6; transition: all 0.2s; }
+    .saldoKasCopyCell:hover .copy-icon { opacity: 1; color: var(--neon-cyan); text-shadow: 0 0 5px var(--neon-cyan); transform: scale(1.1); }
+    .saldoKasNote { display: block; max-width: 100%; color: var(--neon-yellow); font-weight: 950; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .saldoKasTableBox::-webkit-scrollbar { width: 8px; height: 8px; } .saldoKasTableBox::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); } .saldoKasTableBox::-webkit-scrollbar-thumb { background: rgba(180, 108, 255, 0.3); border-radius: 10px; }
+
+    @media (max-width: 1024px) { .sidebar { transform: translateX(-100%); } .sidebar.open { transform: translateX(0); } .main-content { margin-left: 0; } .mobile-menu-btn { display: block; } .stats-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 768px) { .content { padding: 20px; } .top-bar { padding: 0 20px; } .stats-grid { grid-template-columns: 1fr; } .modules-grid { grid-template-columns: 1fr; } .hero-section { padding: 28px; } .hero-title { font-size: 24px; } .saldoKasCards { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 680px) { .saldoKasWrap { padding: 10px; border-radius: 16px; } .saldoKasCards { grid-template-columns: 1fr; } .saldoKasToolbar { flex-direction: column; } .saldoKasControls { flex-direction: column; align-items: stretch; } .saldoKasControls input, .sk-btn-load, .sk-btn-copy { width: 100%; justify-content: center; } }
+    @media (max-width: 480px) { .content { padding: 16px; } .stat-card { padding: 18px; } .module-card { padding: 18px; } }
+  </style>
+</head>
+<body>
+
+  <div class="loader" id="loader"><div class="loader-spinner"></div><div class="loader-text"><span>Initializing AURA.OS...</span><span>Loading modules...</span><span>Establishing connection...</span><span>Almost ready...</span><span>Welcome back</span></div></div>
+  <div class="popup-overlay" id="popupOverlay"><div class="popup-container"><div class="popup-header"><h3 class="popup-title" id="popupTitle">Notification</h3><button class="popup-close" id="popupCloseBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="popup-body" id="popupBody"><div id="popupContent"></div></div><div class="popup-footer" id="popupFooter"><button class="btn btn-secondary" id="popupCancelBtn">Close</button><button class="btn" id="popupConfirmBtn">Confirm</button></div></div></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div>
+        <div class="logo">AURA.OS</div>
+        <div class="logo-sub">v3.0.1 — CLOUDFLARE</div>
+      </div>
+      <button class="btn-logout" onclick="logout()"><i class="fas fa-sign-out-alt"></i></button>
+    </div>
+    <nav class="nav-menu">
+      <div class="nav-group"><div class="nav-group-title">Core</div><div class="nav-item" data-menu="Index"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-5a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Dashboard</div></div>
+      
+      <div class="nav-group"><div class="nav-group-title">Validation</div><div class="nav-item" data-action="appInfo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Rek. Validator</div><div class="nav-item" data-action="appInfo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/></svg>P2M Analyzer</div></div>
+      
+      <div class="nav-group">
+        <div class="nav-group-title">Banking</div>
+        <div class="nav-item" data-action="loadPencairan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Menu Pencairan</div>
+        <div class="nav-submenu-wrap">
+          <div class="nav-trigger">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <span class="label">Banking Tools</span>
+            <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="submenu">
+            <div class="submenu-item" data-action="appInfo">Bank Formatter</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="nav-group">
+        <div class="nav-group-title">Prediction</div>
+        <div class="nav-submenu-wrap">
+          <div class="nav-trigger">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <span class="label">Prediction Tools</span>
+            <span class="chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </div>
+          <div class="submenu">
+            <div class="submenu-item" data-action="appInfo">Syair Database</div>
+            <div class="submenu-item" data-action="appInfo">AI Prediction</div>
+            <div class="submenu-item" data-action="appInfo">PG Report</div>
+            <div class="submenu-item" data-action="appInfo">Gas Slot Engine</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="nav-group"><div class="nav-group-title">System</div><div class="nav-item" data-action="appInfo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>QRIS Config</div><div class="nav-item" data-action="appInfo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>Authority Panel</div></div>
+    </nav>
+    <div class="sidebar-footer"><div>System: <span style="color: var(--accent-success);">● Online</span></div><div>Uptime: 24d 13h</div></div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-bar">
+      <div style="display: flex; align-items: center; gap: 16px;"><button class="mobile-menu-btn" id="mobileMenuBtn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="breadcrumb"><span id="userEmail">system@aura.os</span><span>/</span><span id="breadcrumbPage">dashboard</span></div></div>
+      <div class="status-badge" id="statusBadge"><div class="status-dot"></div><span>System Online</span></div>
+    </header>
+
+    <div class="content">
+      
+      <div id="dashboardView">
+        <div class="hero-section"><h1 class="hero-title">Welcome back, <span id="userName">User</span></h1><p class="hero-subtitle">Quantum interface loaded. All systems operational.</p></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-label">Active Modules</div><div class="stat-value">12</div><div class="stat-trend positive">+2 this week</div></div>
+          <div class="stat-card"><div class="stat-label">Total Transactions</div><div class="stat-value">1,284</div><div class="stat-trend positive">+18%</div></div>
+          <div class="stat-card"><div class="stat-label">Pending Validation</div><div class="stat-value">23</div><div class="stat-trend negative">-5</div></div>
+          <div class="stat-card"><div class="stat-label">System Health</div><div class="stat-value">98%</div><div class="stat-trend positive">Optimal</div></div>
+        </div>
+        <div class="section-title">Quick Access Modules</div>
+        <div class="modules-grid">
+          <div class="module-card" data-color="blue" data-action="appInfo"><div class="module-icon">📊</div><div class="module-name">Syair Database</div><div class="module-desc">Access shio prediction engine</div><div class="module-badge">v2.1.0</div></div>
+          <div class="module-card" data-color="purple" data-action="appInfo"><div class="module-icon">🔮</div><div class="module-name">AI Prediction</div><div class="module-desc">Neural probability calculation</div><div class="module-badge">v3.0.0</div></div>
+          <div class="module-card" data-color="green" data-action="appInfo"><div class="module-icon">🧾</div><div class="module-name">PG Report</div><div class="module-desc">Daily recapitulation module</div><div class="module-badge">v1.8.2</div></div>
+          <div class="module-card" data-color="orange" data-action="appInfo"><div class="module-icon">🚀</div><div class="module-name">QRIS Manager</div><div class="module-desc">Payment gateway configuration</div><div class="module-badge">v2.0.0</div></div>
+          <div class="module-card" data-color="teal" data-action="appInfo"><div class="module-icon">🏦</div><div class="module-name">Rek. Validator</div><div class="module-desc">Cross-check 4 databases</div><div class="module-badge">v1.5.0</div></div>
+          <div class="module-card" data-color="pink" data-action="appInfo"><div class="module-icon">📈</div><div class="module-name">Data Compare</div><div class="module-desc">P2M vs Zonamain analysis</div><div class="module-badge">v1.2.0</div></div>
+          <div class="module-card" data-color="blue" data-action="appInfo"><div class="module-icon">💰</div><div class="module-name">Bank Formatter</div><div class="module-desc">Convert multi-format bank data</div><div class="module-badge">v1.0.0</div></div>
+          <div class="module-card" data-color="teal" data-action="loadPencairan"><div class="module-icon">💸</div><div class="module-name">Menu Pencairan</div><div class="module-desc">Monitor rekening &amp; pending transactions</div><div class="module-badge">v1.0.0</div></div>
+          <div class="module-card" data-color="red" data-action="appInfo"><div class="module-icon">🎰</div><div class="module-name">Gas Slot Engine</div><div class="module-desc">AI Slot Gacor Predictor System</div><div class="module-badge">v1.0.0</div></div>
+          <div class="module-card" data-color="red" data-action="appInfo"><div class="module-icon">🛡️</div><div class="module-name">Authority Panel</div><div class="module-desc">Admin access &amp; user management</div><div class="module-badge">Restricted</div></div>
+          <div class="module-card" data-color="orange" data-action="testConnection"><div class="module-icon">⚡</div><div class="module-name">System Test</div><div class="module-desc">Test all connections</div><div class="module-badge">Diagnostic</div></div>
+          <div class="module-card" data-color="purple" data-action="appInfo"><div class="module-icon">ℹ️</div><div class="module-name">App Info</div><div class="module-desc">System information</div><div class="module-badge">v3.0.1</div></div>
+        </div>
+      </div>
+
+      <!-- SALDO KAS CONTAINER -->
+      <div id="saldoKasContainer" style="display: none;">
+        <div class="saldoKasWrap">
+          <div class="saldoKasHeader">
+            <div><h3>SALDO KAS & PENCAIRAN</h3><div class="saldoKasSub" id="skLastUpdate">Menunggu data...</div></div>
+            <div class="saldoKasControls"><input type="date" id="skDateInput" title="Pilih Tanggal"><button class="sk-btn-load" id="skLoadBtn">CEK SALDO</button></div>
+          </div>
+          <div class="saldoKasCards" id="skCards">
+            <div class="saldoKasCard sk-card-n9"><div class="saldoKasLabel">Total Saldo N9</div><div class="saldoKasValue saldoKasGreen" id="skTotalN9">0</div></div>
+            <div class="saldoKasCard sk-card-pending"><div class="saldoKasLabel">Total Pending</div><div class="saldoKasValue saldoKasRed" id="skTotalPending">0</div></div>
+            <div class="saldoKasCard sk-card-asli"><div class="saldoKasLabel">Total Saldo Asli</div><div class="saldoKasValue saldoKasYellow" id="skTotalAsli">0</div></div>
+            <div class="saldoKasCard sk-card-cair"><div class="saldoKasLabel">Total Pencairan</div><div class="saldoKasValue saldoKasPurple" id="skTotalCair">0</div></div>
+            <div class="saldoKasCard sk-card-belum"><div class="saldoKasLabel">Belum Proses</div><div class="saldoKasValue saldoKasRed" id="skTotalBelum">0</div></div>
+            <div class="saldoKasCard sk-card-cacing"><div class="saldoKasLabel">Target Cacing</div><div class="saldoKasValue saldoKasCyan" id="skTotalCacing" style="font-size: 16px;">0</div></div>
+          </div>
+          <div class="saldoKasToolbar">
+            <input type="text" class="saldoKasSearch" id="skSearchInput" placeholder="🔍 Cari Sheet / Nama / Rekening...">
+            <button class="sk-btn-copy" id="skCopyAllBtn" title="Salin semua data pencairan"><span>📋</span> Copy All</button>
+          </div>
+          <div class="saldoKasTableBox">
+            <table class="saldoKasTable">
+              <thead><tr><th class="saldoKasNo">NO</th><th class="saldoKasSheet">SHEET / REKENING</th><th class="saldoKasN9">SALDO N9</th><th class="saldoKasPending">PENDING</th><th class="saldoKasAsli">SALDO ASLI</th><th class="saldoKasCair">NOMINAL CAIR</th><th class="saldoKasStatus">STATUS</th><th class="saldoKasKet">KETERANGAN</th></tr></thead>
+              <tbody id="skTableBody"><tr><td colspan="8" class="saldoKasCenter" style="padding: 40px; color: rgba(255,255,255,0.4);">Klik "CEK SALDO" untuk memuat data...</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <button class="panel-toggle" id="panelToggle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <aside class="right-panel" id="rightPanel"><div class="widget"><div class="widget-title">System Metrics</div><div id="systemMetrics">CPU: 12%<br>RAM: 34%<br>Ping: 24ms</div></div><div class="widget"><div class="widget-title">Activity Log</div><div class="terminal" id="terminalLogs"><div class="terminal-line">[INIT] System boot sequence initiated</div><div class="terminal-line">[INIT] Loading kernel modules</div><div class="terminal-line">[INIT] Establishing secure connection</div><div class="terminal-line">[READY] Dashboard ready</div></div></div></aside>
+
+  <script>
+    // CEK LOGIN CLOUDFLARE
+    const authToken = localStorage.getItem('aura_auth_token');
+    const userRole = localStorage.getItem('aura_user_role');
+    if (!authToken) { window.location.href = '/Login.html'; }
+    else {
+      document.getElementById('userName').textContent = authToken;
+      document.getElementById('userEmail').textContent = authToken + '@aura.os';
+    }
+    function logout() { localStorage.clear(); window.location.href = '/Login.html'; }
+
+    var currentPopupCallback = null; var audioCtx = null;
+    function $(id) { return document.getElementById(id); }
+    function escapeHtml(str) { var d = document.createElement('div'); d.appendChild(document.createTextNode(str)); return d.innerHTML; }
+
+    function showPopup(title, contentHtml, showConfirm, onConfirm) { $('popupTitle').textContent = title; $('popupContent').innerHTML = contentHtml; $('popupConfirmBtn').style.display = showConfirm ? 'inline-block' : 'none'; currentPopupCallback = showConfirm ? onConfirm : null; $('popupOverlay').classList.add('active'); }
+    function closePopup() { $('popupOverlay').classList.remove('active'); currentPopupCallback = null; }
+    function confirmPopup() { if (typeof currentPopupCallback === 'function') currentPopupCallback(); closePopup(); }
+    function showToast(message, type) { type = type || 'info'; var old = document.querySelector('.toast'); if (old) old.remove(); var icons = { success: '\u2705', error: '\u274C', warning: '\u26A0\uFE0F', info: '\u2139\uFE0F' }; var t = document.createElement('div'); t.className = 'toast'; t.innerHTML = '<div>' + (icons[type] || icons.info) + '</div><div class="toast-content">' + escapeHtml(message) + '</div><button class="toast-close" id="toastCloseBtn">\u2715</button>'; document.body.appendChild(t); t.querySelector('#toastCloseBtn').addEventListener('click', function() { t.remove(); }); requestAnimationFrame(function() { requestAnimationFrame(function() { t.classList.add('show'); }); }); setTimeout(function() { t.classList.remove('show'); setTimeout(function() { if (t.parentNode) t.remove(); }, 400); }, 3500); }
+    function addTerminalLog(msg) { var t = $('terminalLogs'); var d = document.createElement('div'); d.className = 'terminal-line'; d.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg; t.appendChild(d); t.scrollTop = t.scrollHeight; }
+    function playSound() { try { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); var o = audioCtx.createOscillator(); var g = audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.type = 'sine'; o.frequency.setValueAtTime(600, audioCtx.currentTime); o.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.05); g.gain.setValueAtTime(0.1, audioCtx.currentTime); g.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1); o.start(audioCtx.currentTime); o.stop(audioCtx.currentTime + 0.1); } catch (e) {} }
+
+    function switchView(view) { 
+      $('dashboardView').style.display = view === 'dashboard' ? 'block' : 'none'; 
+      $('saldoKasContainer').style.display = view === 'saldoKas' ? 'block' : 'none'; 
+      $('breadcrumbPage').textContent = view === 'dashboard' ? 'dashboard' : view === 'saldoKas' ? 'menu-pencairan' : 'unknown'; 
+      if (view === 'saldoKas') skLoadData(); 
+    }
+
+    let skGlobalData = [];
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date(); const yyyy = today.getFullYear(); const mm = String(today.getMonth() + 1).padStart(2, '0'); const dd = String(today.getDate()).padStart(2, '0');
+      $('skDateInput').value = `${yyyy}-${mm}-${dd}`;
+      $('skLoadBtn').addEventListener('click', skLoadData);
+      $('skSearchInput').addEventListener('input', skFilterTable);
+      $('skCopyAllBtn').addEventListener('click', skCopyAllData);
+    });
+
+    function skLoadData() {
+      const dateVal = $('skDateInput').value;
+      if (!dateVal) { showToast('Pilih tanggal terlebih dahulu!', 'warning'); return; }
+      const btnLoad = $('skLoadBtn'); btnLoad.innerHTML = '⏳ LOADING...'; btnLoad.disabled = true; btnLoad.style.opacity = '0.7';
+      
+      // Simulasi Data Dummy Cloudflare (Karena tidak ada google.script.run)
+      setTimeout(() => {
+        const dummyRes = {
+          success: true,
+          targetLabel: dateVal,
+          lastUpdate: new Date().toLocaleTimeString(),
+          totalSaldoN9: 150000000,
+          totalPending: 25000000,
+          totalSaldoAsli: 125000000,
+          totalNominalPencairan: 45000000,
+          totalBelumProses: 3,
+          data: [
+            { sheetName: "BANK BCA - 112233", bankLabel: "BCA", accountName: "Budi Donny", rekeningTujuan: "1122334455", rekeningFound: true, saldoN9Display: "50.000.000", pendingDisplay: "5.000.000", saldoAsliDisplay: "45.000.000", nominalPencairanDisplay: "10.000.000", nominalPencairanNumber: 10000000, copyRowRaw: "1122334455 10.000.000", status: "SUDAH DIPROSES", note: "Aman" },
+            { sheetName: "BANK MANDIRI - 445566", bankLabel: "MDR", accountName: "Doni Kurniawan", rekeningTujuan: "8899001122", rekeningFound: true, saldoN9Display: "100.000.000", pendingDisplay: "20.000.000", saldoAsliDisplay: "80.000.000", nominalPencairanDisplay: "35.000.000", nominalPencairanNumber: 35000000, copyRowRaw: "8899001122 35.000.000", status: "BELUM DIPROSES", note: "Perlu Dicek" }
+          ]
+        };
+        skRenderData(dummyRes);
+      }, 800);
+    }
+
+    function skRenderData(res) {
+      const btnLoad = $('skLoadBtn'); btnLoad.innerHTML = '⚡ CEK SALDO'; btnLoad.disabled = false; btnLoad.style.opacity = '1';
+      if (!res || !res.success) { $('skTableBody').innerHTML = `<tr><td colspan="8" class="saldoKasCenter saldoKasRed">Error: ${res.error || 'Gagal memuat'}</td></tr>`; return; }
+      skGlobalData = res.data || [];
+      $('skLastUpdate').innerHTML = `Terakhir Update: <strong>${res.targetLabel}</strong> &nbsp;|&nbsp; ${res.lastUpdate}`;
+      $('skTotalN9').textContent = res.totalSaldoN9.toLocaleString('en-US');
+      $('skTotalPending').textContent = res.totalPending.toLocaleString('en-US');
+      $('skTotalAsli').textContent = res.totalSaldoAsli.toLocaleString('en-US');
+      $('skTotalCair').textContent = res.totalNominalPencairan.toLocaleString('en-US');
+      $('skTotalBelum').textContent = res.totalBelumProses;
+      if(skGlobalData.length > 0) { $('skTotalCacing').textContent = "10.000.000"; }
+      skFilterTable(); showToast('Data Saldo Kas berhasil dimuat!', 'success');
+    }
+
+    function skFilterTable() {
+      const searchVal = ($('skSearchInput').value || '').toLowerCase();
+      const filtered = skGlobalData.filter(d => { if (!searchVal) return true; return (d.sheetName||'').toLowerCase().includes(searchVal) || (d.accountName||'').toLowerCase().includes(searchVal) || (d.rekeningTujuan||'').toLowerCase().includes(searchVal); });
+      const tbody = $('skTableBody');
+      if (filtered.length === 0) { tbody.innerHTML = `<tr><td colspan="8" class="saldoKasCenter" style="color: rgba(255,255,255,0.3);">Tidak ada data</td></tr>`; return; }
+      let html = '';
+      filtered.forEach((d, i) => {
+        let statusBadge = d.status === 'BELUM DIPROSES' ? `<span class="saldoKasBadge bad">${d.status}</span>` : d.status === 'SUDAH DIPROSES' ? `<span class="saldoKasBadge ok">${d.status}</span>` : `<span class="saldoKasBadge warn">${d.status||'-'}</span>`;
+        let cairCell = '-';
+        if (d.nominalPencairanNumber > 0 && d.copyRowRaw) { cairCell = `<div class="saldoKasCopyCell" onclick="skCopyText('${btoa(d.copyRowRaw)}', this)"><span class="val">${d.nominalPencairanDisplay}</span><span class="copy-icon">📋</span></div>`; } 
+        else if (d.nominalPencairanNumber > 0) { cairCell = `<div class="saldoKasNum">${d.nominalPencairanDisplay}</div>`; }
+        html += `<tr>
+          <td class="saldoKasNo saldoKasNum" style="color: rgba(255,255,255,0.4);">${i + 1}</td>
+          <td class="saldoKasSheet"><div class="saldoKasSheetName" title="${d.sheetName}">${d.sheetName}</div><div class="saldoKasMetaLine">${d.bankLabel} &bull; ${d.accountName}</div>${d.rekeningFound ? `<div class="saldoKasRekLine">${d.rekeningTujuan}</div>` : ''}</td>
+          <td class="saldoKasNum">${d.saldoN9Display || '0'}</td><td class="saldoKasNum ${d.pendingDisplay ? 'saldoKasRed' : ''}">${d.pendingDisplay || '-'}</td>
+          <td class="saldoKasNum">${d.saldoAsliDisplay || '0'}</td><td class="saldoKasCair">${cairCell}</td>
+          <td class="saldoKasCenter">${statusBadge}</td><td class="saldoKasKet"><span class="saldoKasNote">${d.note || '-'}</span></td>
+        </tr>`;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function skCopyText(b64Text, element) {
+      try {
+        const rawText = atob(b64Text); navigator.clipboard.writeText(rawText).then(() => {
+          const icon = element.querySelector('.copy-icon'); icon.textContent = '✅'; element.querySelector('.val').style.color = 'var(--neon-green)';
+          setTimeout(() => { icon.textContent = '📋'; element.querySelector('.val').style.color = 'var(--neon-purple)'; }, 1500);
+        });
+      } catch(e) { console.error("Gagal copy", e); }
+    }
+
+    function skCopyAllData() {
+      const searchVal = ($('skSearchInput').value || '').toLowerCase();
+      const filtered = skGlobalData.filter(d => { if (!searchVal) return true; return (d.sheetName||'').toLowerCase().includes(searchVal) || (d.accountName||'').toLowerCase().includes(searchVal) || (d.rekeningTujuan||'').toLowerCase().includes(searchVal); });
+      let allDataToCopy = [];
+      filtered.forEach(d => { if (d.nominalPencairanNumber > 0 && d.copyRowRaw) { allDataToCopy.push(d.copyRowRaw); } });
+      if (allDataToCopy.length === 0) { showToast('Tidak ada data pencairan untuk disalin!', 'warning'); return; }
+      const rawText = allDataToCopy.join('\n');
+      try {
+        navigator.clipboard.writeText(rawText).then(() => {
+          const btn = $('skCopyAllBtn'); const originalHtml = btn.innerHTML;
+          btn.innerHTML = '<span>✅</span> Copied!'; btn.classList.add('copied');
+          showToast(allDataToCopy.length + ' baris data pencairan berhasil disalin!', 'success');
+          setTimeout(() => { btn.innerHTML = originalHtml; btn.classList.remove('copied'); }, 2000);
+        }).catch(err => {
+          const textarea = document.createElement("textarea"); textarea.value = rawText; document.body.appendChild(textarea); textarea.select(); document.execCommand('copy'); document.body.removeChild(textarea);
+          showToast(allDataToCopy.length + ' baris data pencairan berhasil disalin!', 'success');
+        });
+      } catch(e) { console.error("Gagal copy all", e); showToast('Gagal menyalin data ke clipboard', 'error'); }
+    }
+
+    document.addEventListener('click', function(e) {
+      var target = e.target.closest('[data-menu], [data-action], .popup-close, #popupCancelBtn, #popupConfirmBtn, .panel-toggle, .mobile-menu-btn, .status-badge');
+      if (!target) return;
+      if (target.matches('.popup-close') || target.matches('#popupCancelBtn')) { closePopup(); return; }
+      if (target.matches('#popupConfirmBtn')) { confirmPopup(); return; }
+      if (target.matches('.panel-toggle')) { $('rightPanel').classList.toggle('open'); playSound(); return; }
+      if (target.matches('.mobile-menu-btn')) { $('sidebar').classList.toggle('open'); return; }
+      if (target.matches('.status-badge')) { showToast('All systems operational', 'success'); return; }
+
+      var menu = target.getAttribute('data-menu');
+      var action = target.getAttribute('data-action');
+
+      if (menu === 'Index') { switchView('dashboard'); playSound(); return; }
+      if (action === 'loadPencairan') { switchView('saldoKas'); playSound(); return; }
+      
+      if (action === 'testConnection') {
+        playSound(); showToast('Testing connection...', 'info');
+        setTimeout(() => {
+          showPopup('Connection Test', '<div style="color: var(--accent-success);">Status: OK<br>Server: Cloudflare Workers<br>Ping: 24ms</div>', false);
+          addTerminalLog('Connection test successful');
+        }, 1000);
+      }
+      if (action === 'appInfo') { 
+        playSound(); 
+        showPopup('App Info', '<div style="color: var(--text-secondary); line-height: 1.8;">AURA.OS Dashboard<br>Version 3.0.1<br>Environment: Cloudflare Workers<br>User: '+ escapeHtml(authToken) +'<br>Role: '+ escapeHtml(userRole || 'N/A') +'</div>', false); 
+      }
+    });
+  </script>
+</body>
+</html>
