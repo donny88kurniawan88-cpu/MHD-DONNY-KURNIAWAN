@@ -1300,9 +1300,88 @@
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
         .delay-4 { animation-delay: 0.4s; }
+            
+                /* ===== BACK TO DASHBOARD BUTTON ===== */
+        .back-dashboard-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+        }
+
+        .back-dashboard-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .back-dashboard-btn i {
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            .back-dashboard-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.75rem;
+                border-radius: 10px;
+            }
+        }
+
+        /* Adjustments for responsive */
+        @media (max-width: 480px) {
+            .back-dashboard-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="body-overlay"></div>
+    <div class="bg-effects"></div>
+    <div class="particle-container" id="particleContainer"></div>
+    
+    <!-- Back to Dashboard Button -->
+        <a href="/Dashboard.html" class="back-dashboard-btn">
+        <i class="fas fa-home"></i> Dashboard
+    </a>
+    
+    <!-- Quick Copy Panel -->
+    <div class="quick-copy-panel">
+        <button class="copy-button" id="copyBgBtn" data-url="https://cdn.areabermain.club/assets/cdn/az6/2026/01/14/20260114/eec48b243e0f270c42e9de21226419f4/backgorund-lunatogel-januari-new.jpg">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Salin Background Aplikasi</span>
+        </button>
+        
+        <button class="copy-button" id="copySyairBgBtn" data-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyu8Fi957BOIbUCDl3wEHR3H_WPZnfqJ8xcg&s">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Salin Background Syair</span>
+        </button>
+        
+        <button class="copy-button" id="copyLogoBtn" data-url="https://hellowmanis.b-cdn.net/lunatogel/lunatogelfav.webp">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Salin Logo Header</span>
+        </button></div>
     <div class="body-overlay"></div>
     <div class="bg-effects"></div>
     <div class="particle-container" id="particleContainer"></div>
