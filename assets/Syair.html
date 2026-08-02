@@ -1,0 +1,3486 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 SYAIR LUNA TOGEL</title>
+    <base target="_top">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES & RESET ===== */
+        :root {
+            --primary: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --secondary: #FF3333;
+            --accent: #d4af37;
+            --dark: #0a0a0c;
+            --darker: #000000;
+            --card-bg: rgba(26, 26, 32, 0.9);
+            --card-border: rgba(255, 51, 51, 0.25);
+            --text-primary: #F0F0F0;
+            --text-secondary: #b0b0b0;
+            --success: #34D399;
+            --warning: #FBBF24;
+            --gradient-primary: linear-gradient(135deg, #8B5CF6 0%, #FF3333 100%);
+            --gradient-secondary: linear-gradient(135deg, #d4af37 0%, #FFD700 100%);
+            --gradient-dark: linear-gradient(135deg, #0a0a0c 0%, #1a1a20 100%);
+            --glass: rgba(255, 255, 255, 0.05);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --glow: 0 0 15px rgba(255, 51, 51, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient-dark);
+            background-image: var(--custom-bg, none);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background 0.5s ease;
+        }
+
+        .body-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+
+        /* Background Effects */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 30%, rgba(255, 51, 51, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        }
+
+        /* Red Particles */
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .red-dot {
+            position: absolute;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            box-shadow: var(--glow);
+            opacity: 0;
+            animation: floatUp 4s infinite ease-in-out;
+        }
+
+        .red-dot.size-s { width: 4px; height: 4px; }
+        .red-dot.size-m { width: 8px; height: 8px; }
+        .red-dot.size-l { width: 12px; height: 12px; }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1.2);
+            }
+            100% {
+                transform: translateY(-40px) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* ===== QUICK COPY PANEL ===== */
+        .quick-copy-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+            animation: fadeInUp 0.6s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .copy-button {
+            background: rgba(26, 26, 32, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            white-space: nowrap;
+            max-width: 220px;
+        }
+
+        .copy-button:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: var(--primary);
+            transform: translateX(-5px) translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .copy-button i {
+            color: var(--accent);
+            font-size: 0.9rem;
+            min-width: 16px;
+        }
+
+        .copy-button .copy-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .copy-button.copied {
+            background: rgba(52, 211, 153, 0.2);
+            border-color: var(--success);
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .app-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            position: relative;
+        }
+
+        @media (min-width: 1200px) {
+            .app-wrapper {
+                grid-template-columns: 400px 1fr;
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            text-align: center;
+            padding: 30px 0 40px;
+            position: relative;
+        }
+
+        .app-header::after {
+            content: '';
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        .brand-text {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            color: #ffffff;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            user-select: none;
+        }
+
+        .brand-text span {
+            background: linear-gradient(to bottom, #ffffff 40%, #b0b0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .special-o {
+            display: inline-block;
+            position: relative;
+            background: none; 
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .special-o::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent), inset 0 0 10px var(--accent);
+            opacity: 0.8;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 70%);
+        }
+
+        .special-o::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rotateSlow 10s linear infinite;
+        }
+
+        @keyframes rotateSlow {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .date-display {
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .date-display i {
+            color: var(--accent);
+        }
+
+        .date-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .header-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            border-radius: 8px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .date-edit-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1rem;
+            margin-left: 10px;
+            transition: var(--transition);
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        .date-edit-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: scale(1.1);
+        }
+
+        .date-input-container {
+            display: none;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .date-input-container.show {
+            display: flex;
+        }
+
+        .date-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--accent);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            width: 200px;
+        }
+
+        .date-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.3);
+        }
+
+        .date-confirm-btn {
+            background: var(--gradient-secondary);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: #000;
+            padding: 8px 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .date-confirm-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ===== CARD STYLES ===== */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+
+        .card:hover {
+            border-color: rgba(255, 51, 51, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title i {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        /* ===== SHIO DISPLAY ===== */
+        .shio-display {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(145deg, rgba(21, 21, 27, 0.9) 0%, rgba(26, 26, 32, 0.9) 100%);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+        }
+
+        .shio-visual {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .shio-image-container {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 3px solid rgba(255, 51, 51, 0.2);
+        }
+
+        .shio-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .shio-display:hover .shio-image {
+            transform: scale(1.05);
+        }
+
+        .shio-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .shio-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-secondary);
+            border-radius: 2px;
+        }
+
+        /* ===== PASARAN SECTION ===== */
+        .pasaran-section {
+            margin-top: 20px;
+        }
+
+        .current-pasaran-display {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(15, 15, 20, 0.7);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 51, 51, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .current-pasaran-display:hover {
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .current-pasaran-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin: 0 auto 15px;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+            transition: var(--transition);
+            border-radius: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .current-pasaran-display:hover .current-pasaran-logo {
+            transform: scale(1.1);
+        }
+
+        .current-pasaran-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .random-pasaran-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient-primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 51, 51, 0.3);
+            z-index: 2;
+        }
+
+        .random-pasaran-btn:hover {
+            transform: rotate(180deg) scale(1.1);
+        }
+
+        /* Pasaran Grid */
+        .pasaran-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .pasaran-card {
+            background: rgba(15, 15, 20, 0.7);
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
+            padding: 18px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pasaran-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.03));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .pasaran-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 51, 51, 0.3);
+        }
+
+        .pasaran-card:hover::before {
+            opacity: 1;
+        }
+
+        .pasaran-card.active {
+            border-color: var(--secondary);
+            background: rgba(255, 51, 51, 0.15);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .pasaran-logo-small {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            transition: var(--transition);
+        }
+
+        .pasaran-card:hover .pasaran-logo-small {
+            transform: scale(1.1);
+        }
+
+        .pasaran-name-small {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ===== SYAIR CARD ===== */
+        .syair-card {
+            background: linear-gradient(145deg, rgba(21, 21, 27, 0.9) 0%, rgba(26, 26, 32, 0.9) 100%);
+            background-image: var(--syair-bg, none);
+            background-size: cover;
+            background-position: center;
+            border-left: 4px solid var(--accent);
+            transition: background 0.5s ease;
+        }
+
+        .syair-content {
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-align: center;
+            padding: 20px 0;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            backdrop-filter: brightness(0.8);
+        }
+
+        .syair-line {
+            display: block;
+            margin-bottom: 20px;
+            position: relative;
+            padding: 0 40px;
+        }
+
+        .syair-line::before,
+        .syair-line::after {
+            content: '✦';
+            position: absolute;
+            color: var(--accent);
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        .syair-line::before {
+            left: 0;
+        }
+
+        .syair-line::after {
+            right: 0;
+        }
+
+        /* ===== NUMBERS SECTION ===== */
+        .main-numbers {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .main-numbers {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .number-display {
+            text-align: center;
+        }
+
+        .number-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .number-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            padding: 22px;
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+            min-height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 3px;
+        }
+
+        .number-value.main {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(255, 51, 51, 0.15) 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .number-value.main::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(139, 92, 246, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+
+        .number-value.bbfs {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(255, 215, 0, 0.15) 100%);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+        }
+
+        .number-value.bbfs::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite 0.5s;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .number-grid-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .number-item {
+            background: rgba(15, 15, 20, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-sm);
+            padding: 20px 12px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .number-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.03));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .number-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--secondary);
+            box-shadow: 0 8px 20px rgba(255, 51, 51, 0.2);
+        }
+
+        .number-item:hover::before {
+            opacity: 1;
+        }
+
+        .number-item.three-digit {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .number-item.three-digit:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* ===== PREDICTION TABLE ===== */
+        .prediction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .prediction-item {
+            background: rgba(15, 15, 20, 0.5);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .prediction-item:hover {
+            border-color: rgba(255, 51, 51, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .prediction-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .prediction-value {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* ===== CUSTOMIZATION SECTION ===== */
+        .customization-section {
+            margin-top: 40px;
+        }
+
+        .customization-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .customization-item {
+            background: rgba(15, 15, 20, 0.7);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .customization-item:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .customization-label {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .customization-label i {
+            color: var(--accent);
+        }
+
+        .customization-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .customization-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        .input-with-btn {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-with-btn .customization-input {
+            flex: 1;
+        }
+
+        .apply-btn {
+            background: var(--gradient-primary);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: white;
+            padding: 0 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .reset-btn {
+            background: rgba(255, 51, 51, 0.2);
+            border: 1px solid rgba(255, 51, 51, 0.3);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            padding: 0 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .reset-btn:hover {
+            background: rgba(255, 51, 51, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .preview-container {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preview-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .preview-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .actions-section {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .actions-section {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 22px 28px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(30, 30, 36, 0.8);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 51, 51, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 51, 51, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 51, 51, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .app-footer {
+            text-align: center;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .app-footer::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            z-index: 1000;
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: 400px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .toast-message {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1200px) {
+            .brand-text {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .brand-text {
+                font-size: 2.2rem;
+            }
+            
+            .date-display {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .number-value {
+                font-size: 2.5rem;
+                padding: 18px;
+                min-height: 120px;
+            }
+            
+            .number-value.bbfs {
+                font-size: 2.2rem;
+            }
+            
+            .shio-image-container {
+                height: 220px;
+            }
+            
+            .syair-line {
+                padding: 0 20px;
+                font-size: 1.1rem;
+            }
+            
+            .current-pasaran-logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .customization-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-copy-panel {
+                top: 15px;
+                right: 15px;
+                gap: 8px;
+            }
+            
+            .copy-button {
+                padding: 8px 15px;
+                font-size: 0.75rem;
+                max-width: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+            
+            .brand-text {
+                font-size: 1.8rem;
+                letter-spacing: 0.1em;
+            }
+            
+            .pasaran-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .number-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .prediction-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 18px 20px;
+                font-size: 1rem;
+            }
+            
+            .shio-image-container {
+                height: 180px;
+            }
+            
+            .shio-name {
+                font-size: 1.8rem;
+            }
+            
+            .input-with-btn {
+                flex-direction: column;
+            }
+            
+            .date-input-container {
+                flex-direction: column;
+            }
+            
+            .quick-copy-panel {
+                top: 10px;
+                right: 10px;
+                gap: 6px;
+            }
+            
+            .copy-button {
+                padding: 6px 12px;
+                font-size: 0.7rem;
+                max-width: 160px;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="body-overlay"></div>
+    <div class="bg-effects"></div>
+    <div class="particle-container" id="particleContainer"></div>
+    
+    <!-- Quick Copy Panel -->
+    <div class="quick-copy-panel">
+        <button class="copy-button" id="copyBgBtn" data-url="https://cdn.areabermain.club/assets/cdn/az6/2026/01/14/20260114/eec48b243e0f270c42e9de21226419f4/backgorund-lunatogel-januari-new.jpg">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Salin Logo Background Aplikasi</span>
+        </button>
+        
+        <button class="copy-button" id="copySyairBgBtn" data-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyu8Fi957BOIbUCDl3wEHR3H_WPZnfqJ8xcg&s">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Salin Logo Background Syair</span>
+        </button>
+        
+        <button class="copy-button" id="copyLogoBtn" data-url="https://hellowmanis.b-cdn.net/lunatogel/lunatogelfav.webp">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Salin Logo Header</span>
+        </button>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header fade-in-up">
+            <h1 class="brand-text" aria-label="SYAIR LUNA TOGEL">
+                <span>S</span><span>Y</span><span>A</span><span>I</span><span>R</span>
+                <span>&nbsp;</span>
+                <span>L</span><span>U</span><span>N</span><span>A</span>
+                <span class="special-o">O</span>
+                <span>T</span><span>O</span><span>G</span><span>É</span><span>L</span>
+            </h1>
+            <div class="date-logo-container">
+                <div class="date-display" id="dateDisplay">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="currentDateText">Loading tanggal...</span>
+                    <button class="date-edit-btn" id="dateEditBtn" title="Edit Tanggal">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                <img id="headerLogo"
+style="width:400px;height:100px;object-fit:contain;display:block;border-radius:12px;padding:6px;box-shadow:0 4px 12px rgba(0,0,0,.08);">
+            </div>
+            
+            <div class="date-input-container" id="dateInputContainer">
+                <input type="date" class="date-input" id="dateInput">
+                <button class="date-confirm-btn" id="dateConfirmBtn">
+                    <i class="fas fa-check"></i> Simpan
+                </button>
+                <button class="reset-btn" id="dateResetBtn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </header>
+
+        <!-- Main App -->
+        <div class="app-wrapper">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Shio Display -->
+                <div class="card shio-display fade-in-up delay-1" id="shioCard">
+                    <div class="shio-visual">
+                        <div class="shio-image-container">
+                            <img class="shio-image" id="shioImage" src="" alt="Shio">
+                        </div>
+                        <h2 class="shio-name" id="shioName">SHIO ULAR</h2>
+                    </div>
+                </div>
+
+                <!-- Pasaran Section -->
+                <div class="card pasaran-section fade-in-up delay-2">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-globe-asia"></i> Pasaran</h3>
+                    </div>
+                    
+                    <!-- Current Pasaran Display -->
+                    <div class="current-pasaran-display" id="pasaranLogoCard">
+                        <div class="random-pasaran-btn" id="randomPasaranBtn">
+                            <i class="fas fa-random"></i>
+                        </div>
+                        <img class="current-pasaran-logo" id="currentPasaranLogo" src="" alt="Pasaran Logo">
+                        <div class="current-pasaran-name" id="currentPasaranName">HONGKONG LOTTO</div>
+                    </div>
+
+                    <!-- Pasaran Grid -->
+                    <div class="pasaran-grid" id="pasaranContainer">
+                        <!-- Pasaran cards will be generated here -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Syair Card -->
+                <div class="card syair-card fade-in-up delay-1" id="syairCard">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-scroll"></i> Syair</h3>
+                    </div>
+                    <div class="syair-content" id="syairContent">
+                        <span class="syair-line">Memuat syair kebijaksanaan...</span>
+                        <span class="syair-line">Mohon bersabar sejenak...</span>
+                        <span class="syair-line">Alam semesta sedang berbicara...</span>
+                        <span class="syair-line">Keberuntungan akan segera datang...</span>
+                    </div>
+                </div>
+
+                <!-- Main Numbers -->
+                <div class="card fade-in-up delay-2">
+                    <div class="main-numbers">
+                        <div class="number-display">
+                            <div class="number-label">Angka Main</div>
+                            <div class="number-value main" id="angkaMainDisplay">00000</div>
+                        </div>
+                        <div class="number-display">
+                            <div class="number-label">BBFS</div>
+                            <div class="number-value bbfs" id="bbfsDisplay">0000000</div>
+                        </div>
+                    </div>
+
+                    <!-- Number Grid -->
+                    <div class="number-grid-section">
+                        <div class="section-title">Koleksi Angka</div>
+                        <div class="number-grid" id="numberGrid">
+                            <!-- Number items will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Predictions -->
+                    <div class="prediction-grid">
+                        <div class="prediction-item">
+                            <div class="prediction-label">Colok Bebas</div>
+                            <div class="prediction-value" id="colokBebas">0 - 0</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Kepala</div>
+                            <div class="prediction-value" id="kepala">00</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Ekor</div>
+                            <div class="prediction-value" id="ekor">00</div>
+                        </div>
+                        <div class="prediction-item">
+                            <div class="prediction-label">Colok Bebas 2D</div>
+                            <div class="prediction-value" id="colok2d">00 - 00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="actions-section fade-in-up delay-3">
+                    <button class="btn btn-primary" id="generateButton">
+                        <i class="fas fa-sync-alt"></i> GENERATE PREDIKSI BARU
+                    </button>
+                    <button class="btn btn-secondary" id="saveButton">
+                        <i class="fas fa-download"></i> SIMPAN HASIL
+                    </button>
+                </div>
+
+                <!-- Customization Section -->
+                <div class="card customization-section fade-in-up delay-4">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-cogs"></i> Kustomisasi Aplikasi</h3>
+                    </div>
+                    
+                    <div class="customization-grid">
+                        <!-- Background Customization -->
+                        <div class="customization-item">
+                            <div class="customization-label">
+                                <i class="fas fa-image"></i>
+                                <span>Background Aplikasi</span>
+                            </div>
+                            <div class="input-with-btn">
+                                <input type="url" class="customization-input" id="bgInput" 
+                                       placeholder="Masukkan URL gambar background...">
+                                <button class="apply-btn" id="bgApplyBtn">Terapkan</button>
+                            </div>
+                            <div class="preview-container">
+                                <span class="preview-label">Preview:</span>
+                                <img class="preview-icon" id="bgPreview" src="" alt="Preview Background" style="display: none;">
+                            </div>
+                            <button class="reset-btn" id="bgResetBtn" style="margin-top: 10px; width: 100%;">
+                                <i class="fas fa-undo"></i> Reset ke Default
+                            </button>
+                        </div>
+
+                        <!-- Syair Background Customization -->
+                        <div class="customization-item">
+                            <div class="customization-label">
+                                <i class="fas fa-scroll"></i>
+                                <span>Background Syair</span>
+                            </div>
+                            <div class="input-with-btn">
+                                <input type="url" class="customization-input" id="syairBgInput" 
+                                       placeholder="Masukkan URL gambar background syair...">
+                                <button class="apply-btn" id="syairBgApplyBtn">Terapkan</button>
+                            </div>
+                            <div class="preview-container">
+                                <span class="preview-label">Preview:</span>
+                                <img class="preview-icon" id="syairBgPreview" src="" alt="Preview Syair Background" style="display: none;">
+                            </div>
+                            <button class="reset-btn" id="syairBgResetBtn" style="margin-top: 10px; width: 100%;">
+                                <i class="fas fa-undo"></i> Reset ke Default
+                            </button>
+                        </div>
+
+                        <!-- Logo Customization -->
+                        <div class="customization-item">
+                            <div class="customization-label">
+                                <i class="fas fa-crown"></i>
+                                <span>Logo Header</span>
+                            </div>
+                            <div class="input-with-btn">
+                                <input type="url" class="customization-input" id="logoInput" 
+                                       placeholder="Masukkan URL logo...">
+                                <button class="apply-btn" id="logoApplyBtn">Terapkan</button>
+                            </div>
+                            <div class="preview-container">
+                                <span class="preview-label">Preview:</span>
+                                <img class="preview-icon" id="logoPreview" src="" alt="Preview Logo" style="display: none;">
+                            </div>
+                            <button class="reset-btn" id="logoResetBtn" style="margin-top: 10px; width: 100%;">
+                                <i class="fas fa-undo"></i> Reset ke Default
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer fade-in-up delay-4">
+            <p class="footer-text">© 2024 SYAIR LUNA TOGEL. Untuk hiburan dan referensi semata.</p>
+            <p class="footer-text mb-2">Hasil prediksi dapat berubah sewaktu-waktu.</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Tentang</a>
+                <a href="#" class="footer-link">Privasi</a>
+                <a href="#" class="footer-link">Ketentuan</a>
+                <a href="#" class="footer-link">Kontak</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle toast-icon"></i>
+        <div class="toast-content">
+            <div class="toast-title" id="toastTitle">Berhasil!</div>
+            <div class="toast-message" id="toastMessage">Prediksi baru telah digenerate.</div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // SYAIR LUNA TOGEL - CUSTOMIZABLE EDITION
+        // ============================================
+
+        // Configuration
+        const CONFIG = {
+            appName: 'SYAIR LUNA TOGEL',
+            version: '6.0.0',
+            defaultShio: 'ULAR',
+            defaultPasaran: 'HONGKONG LOTTO',
+            defaultBackground: '',
+            defaultSyairBackground: '',
+            defaultLogo: ''
+        };
+
+        // Enhanced Data Repository
+        const DataRepository = {
+            // Shio Data with provided images
+            shioData: [
+                { 
+                    id: "TIKUS", 
+                    name: "SHIO TIKUS", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/04e258947275c8fb9c4586411ced2ca0/ilustrasi-shio-kelinci-169.jpeg",
+                    color: "#FB8500"
+                },
+                { 
+                    id: "KERBAU", 
+                    name: "SHIO KERBAU", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/96086e02dd11c07969185043d4fcf020/fotojet-2026-01-20t124218664-2852802545.webp",
+                    color: "#FF006E"
+                },
+                { 
+                    id: "HARIMAU", 
+                    name: "SHIO HARIMAU", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/6a71b599c14e0a9e2551d57dd813bdec/karakteristik-shio-macan.jpg",
+                    color: "#8338EC"
+                },
+                { 
+                    id: "KELINCI", 
+                    name: "SHIO KELINCI", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/8107101e7ddcbe05e09a40c3d138719b/ilustrasi-shio-kelinci-2-169.jpeg",
+                    color: "#FB5607"
+                },
+                { 
+                    id: "NAGA", 
+                    name: "SHIO NAGA", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/002aba8ec3a1e3de16e872ce5da793e0/ilustrasi-shio-naga-169.jpeg",
+                    color: "#3A86FF"
+                },
+                { 
+                    id: "ULAR", 
+                    name: "SHIO ULAR", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/2618801dbc47f5f32491634288afbf0e/ilustrasi-shio-ular-1-169.jpeg",
+                    color: "#7209B7"
+                },
+                { 
+                    id: "KUDA", 
+                    name: "SHIO KUDA", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/741e9a0972a704c25d74f8d8db1386af/karakter-shio-kuda.webp",
+                    color: "#EF476F"
+                },
+                { 
+                    id: "KAMBING", 
+                    name: "SHIO KAMBING", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/00f91866eef1caba630cb6fc3e579903/ilustrasi-shio-kelinci-8-169.jpeg",
+                    color: "#118AB2"
+                },
+                { 
+                    id: "MONYET", 
+                    name: "SHIO MONYET", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/edf8155e645f2cd48222f60da2aaee70/ilustrasi-shio-kelinci-7-169.jpeg",
+                    color: "#06D6A0"
+                },
+                { 
+                    id: "AYAM", 
+                    name: "SHIO AYAM", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/5abe206cb1eb9145133b41c00552886c/ilustrasi-shio-kelinci-6-169.jpeg",
+                    color: "#FFD166"
+                },
+                { 
+                    id: "ANJING", 
+                    name: "SHIO ANJING", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/dd98deb3ede932dae8ff8d27b175594e/ilustrasi-shio-kelinci-5-169.jpeg",
+                    color: "#4ECDC4"
+                },
+                { 
+                    id: "BABI", 
+                    name: "SHIO BABI", 
+                    image: "https://cdn.areabermain.club/assets/cdn/az3/2026/01/27/20260127/d694ac1d3744638388d37b1d1061a9d0/ilustrasi-shio-kelinci-4-169.jpeg",
+                    color: "#FF6B6B"
+                }
+            ],
+
+            // Pasaran Data
+            pasaranData: [
+                { 
+                    id: "HONGKONG LOTTO", 
+                    name: "HK LOTTO", 
+                    logo: "https://hongkongfunlotto.net/assets/images/hongkong-lotto-2.png", 
+                    color: "#E53E3E"
+                },
+                { 
+                    id: "SYDNEY LOTTO", 
+                    name: "SDY LOTTO", 
+                    logo: "https://sydneyfunlotto.net/assets/image/logo_sydney.png", 
+                    color: "#3182CE"
+                },
+                { 
+                    id: "BRUNEI POOLS", 
+                    name: "BRUNEI", 
+                    logo: "https://bruneipools.com/assets/img/brunei-logo.png", 
+                    color: "#38A169"
+                },
+                { 
+                    id: "POIPET LOTTERY", 
+                    name: "POIPET", 
+                    logo: "https://poipetlottery.com/img/logo.png", 
+                    color: "#D69E2E"
+                },
+                { 
+                    id: "CHELSEA POOLS", 
+                    name: "CHELSEA", 
+                    logo: "https://chelseapools.co.uk/assets/img/chelseaPools_logo.png", 
+                    color: "#1A365D"
+                },
+                { 
+                    id: "BANGKOK POOLS", 
+                    name: "BANGKOK", 
+                    logo: "https://bangkokpoolstoday.com/assets/img/bangkokpools_logo.png", 
+                    color: "#805AD5"
+                }
+            ],
+
+            // Syair Templates
+            syairTemplates: [
+    [
+        "Malam sunyi di tepi sungai",
+        "Cahaya bulan menerangi jalan",
+        "Harapan baru akan segera tiba",
+        "Keberuntungan menghampiri pelan"
+    ],
+    [
+        "Angin berhembus lembut sekali",
+        "Membawa harapan dan mimpi",
+        "Di ujung sana cahaya bersinar",
+        "Masa depan penuh arti"
+    ],
+    [
+        "Di bawah langit bertabur bintang",
+        "Waktu terus bergulir cepat",
+        "Nasib baik sedang menanti",
+        "Buka hati dan terima"
+    ],
+    [
+        "Embun pagi membasahi bumi",
+        "Hari baru penuh makna",
+        "Jalan terbuka lebar-lebar",
+        "Saatnya untuk melangkah"
+    ],
+    [
+        "Bulan purnama bersinar terang",
+        "Menyinari malam yang kelam",
+        "Angka-angka berbaris rapi",
+        "Menanti tangan yang tepat"
+    ],
+    [
+        "Di taman bunga mekar indah",
+        "Kupu-kupu menari riang",
+        "Rejeki datang tak terduga",
+        "Senyum bahagia terpancar"
+    ],
+
+    [
+        "Mentari pagi menyapa jiwa",
+        "Langkah kecil mulai tertata",
+        "Harapan tumbuh penuh percaya",
+        "Rejeki hadir tanpa diduga"
+    ],
+    [
+        "Langit cerah terbentang luas",
+        "Arah hidup mulai jelas",
+        "Tekad kuat tak pernah pupus",
+        "Keberuntungan makin lepas"
+    ],
+    [
+        "Angin senja membawa pesan",
+        "Sunyi hadir perlahan",
+        "Doa naik ke angkasa luas",
+        "Jawaban datang menenangkan"
+    ],
+    [
+        "Bintang malam berkilau tenang",
+        "Waktu berjalan tanpa ragu",
+        "Nasib baik sedang berjuang",
+        "Menemani langkahmu"
+    ],
+
+    [
+        "Ombak kecil menyapa pantai",
+        "Pasir basah memantulkan cahaya",
+        "Hidup mengalir tanpa henti",
+        "Takdir indah mulai terasa"
+    ],
+    [
+        "Jejak kaki di pasir putih",
+        "Angin laut berhembus pelan",
+        "Kesungguhan tak pernah letih",
+        "Keberuntungan datang bertahan"
+    ],
+    [
+        "Mentari sore condong ke barat",
+        "Bayang senja memanjang diam",
+        "Kesabaran membawa berkat",
+        "Hasil indah akan datang"
+    ],
+    [
+        "Hujan reda meninggalkan jejak",
+        "Langit bersih terasa ringan",
+        "Kesempatan makin mendekat",
+        "Untuk jiwa yang bertahan"
+    ],
+    [
+        "Malam hening tanpa suara",
+        "Pikiran jernih tertata",
+        "Impian tumbuh dalam doa",
+        "Rejeki hadir menyapa"
+    ],
+
+    [
+        "Cahaya lilin kecil menyala",
+        "Sunyi menemani hati",
+        "Harapan hidup tetap terjaga",
+        "Nasib baik menghampiri"
+    ],
+    [
+        "Angin pagi membawa damai",
+        "Hari baru dimulai",
+        "Kesabaran jadi kunci raih",
+        "Keberuntungan mendekatkan diri"
+    ],
+    [
+        "Langit biru tanpa cela",
+        "Arah hidup terbuka nyata",
+        "Tekad kuat di dalam jiwa",
+        "Keberhasilan menunggu di sana"
+    ],
+    [
+        "Mentari naik di ufuk timur",
+        "Cahaya hangat menyentuh bumi",
+        "Semangat hidup takkan luntur",
+        "Takdir baik menghampiri"
+    ],
+    [
+        "Daun gugur jatuh perlahan",
+        "Musim berubah tanpa tanda",
+        "Hidup bergerak penuh harapan",
+        "Menuju hasil bermakna"
+    ],
+
+    [
+        "Langkah kecil menuju mimpi",
+        "Waktu terus berlari",
+        "Kesungguhan takkan berhenti",
+        "Keberuntungan akan menghampiri"
+    ],
+    [
+        "Angin malam menyentuh jendela",
+        "Sunyi terasa damai",
+        "Doa tumbuh penuh makna",
+        "Jawaban datang perlahan"
+    ],
+    [
+        "Cahaya lampu di kejauhan",
+        "Jalan panjang terasa dekat",
+        "Harapan hidup terus berjalan",
+        "Keberuntungan makin mendekat"
+    ],
+    [
+        "Langit malam bertabur cahaya",
+        "Bintang tersusun rapi",
+        "Nasib baik hadir nyata",
+        "Menanti tangan yang pasti"
+    ],
+    [
+        "Mentari pagi hangat kembali",
+        "Semangat tumbuh di dada",
+        "Takdir baik siap menghampiri",
+        "Untuk hati yang percaya"
+    ],
+
+    [
+        "Angin senja membawa tenang",
+        "Hari hampir usai",
+        "Kesempatan datang berulang",
+        "Bagi yang tak menyerah"
+    ],
+    [
+        "Embun tipis di ujung daun",
+        "Pagi segar terasa ringan",
+        "Kesabaran jadi penuntun",
+        "Keberuntungan datang perlahan"
+    ],
+    [
+        "Langit luas tanpa batas",
+        "Arah hidup terbentang",
+        "Tekad kuat takkan pupus",
+        "Rejeki datang tenang"
+    ],
+    [
+        "Mentari redup di balik awan",
+        "Hujan turun membasuh bumi",
+        "Harapan hidup tetap bertahan",
+        "Nasib baik menghampiri"
+    ],
+    [
+        "Malam panjang terasa singkat",
+        "Doa naik perlahan",
+        "Keberuntungan makin mendekat",
+        "Saat hati berserah"
+    ],
+
+    [
+        "Angin lembut menyapu wajah",
+        "Pikiran jernih terbuka",
+        "Kesempatan makin mendekat",
+        "Untuk hati yang percaya"
+    ],
+    [
+        "Langkah hidup terus bergerak",
+        "Waktu tak pernah diam",
+        "Tekad kuat tanpa ragu",
+        "Jawaban datang perlahan"
+    ],
+    [
+        "Mentari pagi membuka hari",
+        "Cahaya hangat terasa nyata",
+        "Kesempatan datang sendiri",
+        "Bagi jiwa yang percaya"
+    ],
+    [
+        "Langit cerah selepas hujan",
+        "Udara segar terasa damai",
+        "Takdir baik bukan kebetulan",
+        "Ia hadir bagi yang sabar"
+    ],
+    [
+        "Angin laut membawa harap",
+        "Gelombang datang berirama",
+        "Perjalanan hidup terus melangkah",
+        "Menuju hasil bermakna"
+    ],
+
+    [
+        "Jejak langkah tak pernah sia",
+        "Waktu jadi saksi nyata",
+        "Usaha tumbuh penuh makna",
+        "Keberhasilan menyapa"
+    ],
+    [
+        "Mentari senja menutup hari",
+        "Cahaya redup menenangkan",
+        "Nasib baik datang perlahan",
+        "Mengisi langkah yang pasti"
+    ],
+    [
+        "Bintang malam jatuh perlahan",
+        "Doa terucap dalam diam",
+        "Keberuntungan bukan kebetulan",
+        "Ia datang bagi yang tekun"
+    ],
+    [
+        "Angin pagi membawa cerita",
+        "Hari baru dimulai",
+        "Harapan tumbuh penuh makna",
+        "Rejeki datang menghampiri"
+    ],
+    [
+        "Langit pagi berwarna cerah",
+        "Langkah hidup terasa ringan",
+        "Tekad kuat takkan goyah",
+        "Keberuntungan makin dekatkan"
+    ],
+
+    [
+        "Mentari hangat menyentuh bumi",
+        "Cahaya hidup terasa nyata",
+        "Takdir baik menghampiri",
+        "Untuk hati yang percaya"
+    ],
+    [
+        "Angin malam berbisik pelan",
+        "Sunyi menemani doa",
+        "Harapan hidup tetap bertahan",
+        "Menuju hasil bermakna"
+    ],
+    [
+        "Langit malam terasa luas",
+        "Bintang memberi arah",
+        "Impian hidup takkan pupus",
+        "Selama langkah tetap tegak"
+    ],
+    [
+        "Mentari pagi kembali bersinar",
+        "Hari baru terbuka lebar",
+        "Kesempatan datang tanpa sadar",
+        "Saatnya untuk melangkah"
+    ],
+    [
+        "Malam sunyi berakhir pagi",
+        "Cahaya hadir perlahan",
+        "Nasib baik siap menghampiri",
+        "Untuk jiwa yang bertahan"
+    ],
+
+    // ========== TAMBAHAN 100 SYAIR BARU DIMULAI DARI SINI ==========
+    [
+        "Burung berkicau di dahan tinggi",
+        "Menyambut pagi yang cerah",
+        "Semoga rezeki tak terperi",
+        "Menghampiri setiap peluh"
+    ],
+    [
+        "Sungai mengalir tenang dan jernih",
+        "Ikan berenang riang gembira",
+        "Hidup ini penuh warna indah",
+        "Keberuntungan selalu nyata"
+    ],
+    [
+        "Kabut pagi turun perlahan",
+        "Menyelimuti lembah sunyi",
+        "Harapan baru akan tiba",
+        "Bawa keberuntungan abadi"
+    ],
+    [
+        "Pelangi muncul setelah hujan",
+        "Warnanya sungguh mempesona",
+        "Rezeki datang dari langit",
+        "Untuk semua yang percaya"
+    ],
+    [
+        "Pohon rindang memberi teduh",
+        "Daunnya bergoyang lembut",
+        "Kesempatan emas menanti",
+        "Di depan mata terbuka"
+    ],
+    [
+        "Kicau merdu di pagi hari",
+        "Membangunkan dari mimpi",
+        "Semangat baru mulai berkobar",
+        "Rezeki menghampiri nanti"
+    ],
+    [
+        "Awan putih berarak lambat",
+        "Di langit biru nan luas",
+        "Nasib baik sedang berjalan",
+        "Menuju ke pintu hati"
+    ],
+    [
+        "Matahari terbit di timur",
+        "Cahayanya hangat dan cerah",
+        "Hari ini penuh berkah",
+        "Rezeki melimpah ruah"
+    ],
+    [
+        "Bunga melati semerbak wangi",
+        "Di taman yang asri nan hijau",
+        "Keberuntungan akan datang",
+        "Membawa senyum dan tawa"
+    ],
+    [
+        "Angin sepoi-sepoi basah",
+        "Membelai pipi dengan lembut",
+        "Hari esok lebih cerah",
+        "Dengan rezeki yang datang"
+    ],
+    [
+        "Cahaya remang  senja hari",
+        "Menyapu lelah di dada",
+        "Doa yang tulus  kan terkabul",
+        "Rezeki datang berganda"
+    ],
+    [
+        "Bulan sabit  tipis  melengkung",
+        "Bersinar  di  langit  kelam",
+        "Impian  dan  harapan  hidup",
+        "Kan  terwujud  dengan  pasti"
+    ],
+    [
+        "Desiran  ombak  di  pantai",
+        "Mengikis  pasir  putih  halus",
+        "Usaha  tak  kenal  lelah",
+        "Bawa  hasil  yang  manis"
+    ],
+    [
+        "Kupu-kupu  terbang  bebas",
+        "Menari  di  antara  bunga",
+        "Rezeki  datang  tak  terduga",
+        "Membahagiakan  jiwa"
+    ],
+    [
+        "Embun  pagi  di  ujung  rumput",
+        "Bersinar  seperti  mutiara",
+        "Hari  ini  penuh  anugerah",
+        "Dari  Yang  Maha  Kuasa"
+    ],
+    [
+        "Burung  hantu  di  malam  hari",
+        "Bermata  tajam  menyala",
+        "Firasat  baik  datang  menjelang",
+        "Bawa  hoki  sepanjang  masa"
+    ],
+    [
+        "Kerlip  kunang-kunang  di  sawah",
+        "Penerang  di  kegelapan",
+        "Jalan  hidup  makin  terang",
+        "Dengan  rezeki  berlimpah"
+    ],
+    [
+        "Gunung  tinggi  menjulang  megah",
+        "Diatasnya  awan  melayang",
+        "Cita-cita  yang  dikejar",
+        "Kan  tercapai  dengan  mudah"
+    ],
+    [
+        "Sawah  hijau  terbentang  luas",
+        "Padi  menguning  siap  tuai",
+        "Hasil  usaha  selama  ini",
+        "Membawa  kebahagiaan"
+    ],
+    [
+        "Hujan  gerimis  membasah  bumi",
+        "Menyegarkan  tanah  dan  jiwa",
+        "Berkah  turun  dari  langit",
+        "Untuk  hamba  yang  sabar"
+    ],
+    [
+        "Purnama  bersinar  terang",
+        "Menerangi  seluruh  alam",
+        "Mimpi  indah  menjadi  nyata",
+        "Rezeki  tak  terhingga"
+    ],
+    [
+        "Merpati  putih  terbang  tinggi",
+        "Membawa  kabar  gembira",
+        "Hari  baik  segera  tiba",
+        "Dengan  rezeki  melimpah"
+    ],
+    [
+        "Cacing  keluar  setelah  hujan",
+        "Burung  mematuk  dengan  riang",
+        "Rezeki  kadang  tak  disangka",
+        "Datang  dari  arah  manapun"
+    ],
+    [
+        "Bebatuan  di  tepi  kali",
+        "Tempat  berjemur  yang  damai",
+        "Hati  yang  tenang  dan  tulus",
+        "Mendapatkan  berkah  hidup"
+    ],
+    [
+        "Jamur  tumbuh  setelah  hujan",
+        "Di  antara  daun  kering",
+        "Keberuntungan  muncul  tiba-tiba",
+        "Menyenangkan  hati  dan  jiwa"
+    ],
+    [
+        "Laba-laba  rajut  jaring",
+        "Dengan  sabar  dan  teliti",
+        "Rezeki  butuh  kesungguhan",
+        "Agar  datang  dengan  mudah"
+    ],
+    [
+        "Semut  berbaris  rapi",
+        "Mengangkat  beban  bersama",
+        "Kerja  keras  dan  kerjasama",
+        "Bawa  hasil  berlimpah"
+    ],
+    [
+        "Kelelawar  terbang  malam",
+        "Mencari  mangsa  dengan  pasti",
+        "Firasat  kuat  dan  keyakinan",
+        "Bawa  rezeki  tak  terduga"
+    ],
+    [
+        "Harimau  mengaum  di  hutan",
+        "Menunjukkan  kekuatan",
+        "Keberanian  dan  tekad",
+        "Membuka  pintu  rezeki"
+    ],
+    [
+        "Gajah  berjalan  perkasa",
+        "Dengan  langkah  yang  mantap",
+        "Kesabaran  dan  kebijaksanaan",
+        "Bawa  rezeki  berlimpah"
+    ],
+    [
+        "Ular  melingkar  di  dahan",
+        "Diam  namun  waspada",
+        "Kesempatan  emas  muncul",
+        "Saat  paling  tak  terduga"
+    ],
+    [
+        "Rajawali  terbang  tinggi",
+        "Memandang  jauh  ke  depan",
+        "Visimu  yang  luas  dan  jelas",
+        "Bawa  rezeki  tak  terbatas"
+    ],
+    [
+        "Ikan  lumba-lumba  riang",
+        "Berenang  di  laut  biru",
+        "Kebahagiaan  dan  rezeki",
+        "Selalu  mengikuti  dirimu"
+    ],
+    [
+        "Paus  biru  raksasa",
+        "Menjelajah  samudra",
+        "Rezeki  besar  menanti",
+        "Untuk  mereka  yang  berani"
+    ],
+    [
+        "Kuda  berlari  kencang",
+        "Menerjang  angin  dan  debu",
+        "Semangat  pantang  menyerah",
+        "Bawa  keberhasilan"
+    ],
+    [
+        "Sapi  merumput  tenang",
+        "Di  padang  yang  hijau",
+        "Ketenangan  dan  kesabaran",
+        "Bawa  rezeki  berlipat"
+    ],
+    [
+        "Ayam  jago  berkokok",
+        "Membangunkan  fajar",
+        "Pekerja  keras  di  pagi  hari",
+        "Rezekinya  tak  terkira"
+    ],
+    [
+        "Bebek  berenang  riang",
+        "Di  kolam  yang  tenang",
+        "Hidup  mengalir  dengan  damai",
+        "Rezeki  datang  sendiri"
+    ],
+    [
+        "Kambing  memanjat  tebing",
+        "Mencari  rumput  hijau",
+        "Usaha  tak  kenal  lelah",
+        "Hasilnya  memuaskan"
+    ],
+    [
+        "Monyet  bergelantungan",
+        "Pintar  dan  lincah",
+        "Kecerdikan  dan  kelincahan",
+        "Buka  pintu  rezeki"
+    ],
+    [
+        "Beruang  mencari  madu",
+        "Dengan  penuh  kesabaran",
+        "Hasil  manis  kan  diperoleh",
+        "Dari  ketekunan  hati"
+    ],
+    [
+        "Singa  tidur  siang  hari",
+        "Tapi  siap  menerkam",
+        "Rezeki  besar  datang",
+        "Saat  waktunya  tiba"
+    ],
+    [
+        "Jerapah  menjulang  tinggi",
+        "Melihat  jauh  ke  depan",
+        "Pandangan  yang  luas  dan  jelas",
+        "Bawa  rezeki  berlimpah"
+    ],
+    [
+        "Zebra  berlari  cepat",
+        "Di  padang  savana",
+        "Kecepatan  dan  ketepatan",
+        "Mengalahkan  rintangan"
+    ],
+    [
+        "Unta  di  padang  pasir",
+        "Tahan  panas  dan  dahaga",
+        "Ketabahan  menghadapi  cobaan",
+        "Bawa  keberuntungan"
+    ],
+    [
+        "Kanguru  melompat  jauh",
+        "Membawa  anak  di  kantung",
+        "Tanggung  jawab  dan  kasih  sayang",
+        "Dibalas  rezeki  berlipat"
+    ],
+    [
+        "Koala  di  pohon  eucalyptus",
+        "Hidup  tenang  dan  damai",
+        "Kesederhanaan  dan  ketenangan",
+        "Bawa  kebahagiaan"
+    ],
+    [
+        "Panda  makan  bambu",
+        "Dengan  santai  dan  rileks",
+        "Rezeki  datang  dengan  sendirinya",
+        "Untuk  mereka  yang  sabar"
+    ],
+    [
+        "Penguin  berbaris  rapi",
+        "Menghadapi  dingin  ekstrem",
+        "Kebersamaan  dan  kesetiaan",
+        "Bawa  keberhasilan"
+    ],
+    [
+        "Burung  merak  mengembangkan  ekor",
+        "Warnanya  memukau  mata",
+        "Bakat  dan  keunikan  dirimu",
+        "Buka  pintu  rezeki"
+    ],
+    [
+        "Burung  cendrawasih  indah",
+        "Menari  di  hutan  hujan",
+        "Keindahan  dan  keanggunan",
+        "Menarik  keberuntungan"
+    ],
+    [
+        "Katak  bernyanyi  di  malam",
+        "Suaranya  merdu  dan  syahdu",
+        "Bisikan  hati  yang  jernih",
+        "Pandu  ke  rezeki  sejati"
+    ],
+    [
+        "Kadal  berjemur  di  batu",
+        "Menyerap  panas  matahari",
+        "Energi  positif  yang  kau  miliki",
+        "Tarik  rezeki  dan  berkah"
+    ],
+    [
+        "Kura-kura  berjalan  lambat",
+        "Tapi  pasti  sampai",
+        "Kesabaran  dan  ketekunan",
+        "Kunci  keberhasilan"
+    ],
+    [
+        "Buaya  diam  di  air",
+        "Menunggu  saat  tepat",
+        "Kesempatan  emas  datang",
+        "Saat  kau  siap  menerima"
+    ],
+    [
+        "Kepiting  berjalan  menyamping",
+        "Dengan  cangkang  yang  keras",
+        "Kadang  jalan  tak  lurus",
+        "Tapi  rezeki  tetap  datang"
+    ],
+    [
+        "Udang  melompat  di  air",
+        "Kecil  tapi  lincah",
+        "Rezeki  tak  memandang  besar  kecil",
+        "Untuk  semua  yang  berusaha"
+    ],
+    [
+        "Cumi-cumi  sembur  tinta",
+        "Saat  terancam  bahaya",
+        "Kecerdikan  dalam  kesulitan",
+        "Selamatkan  dari  masalah"
+    ],
+    [
+        "Gurita  delapan  lengan",
+        "Mampu  lakukan  banyak",
+        "Keterampilan  yang  beragam",
+        "Buka  banyak  peluang"
+    ],
+    [
+        "Bintang  laut  di  karang",
+        "Bentuknya  indah  dan  unik",
+        "Keunikan  dalam  dirimu",
+        "Adalah  sumber  rezeki"
+    ],
+    [
+        "Bulutangkis  di  udara",
+        "Terbang  bebas  dan  riang",
+        "Kebebasan  dan  kegembiraan",
+        "Bawa  rezeki  berlimpah"
+    ],
+    [
+        "Kupu-kupu  malam  keluar",
+        "Setelah  matahari  tenggelam",
+        "Rezeki  datang  di  waktu  tak  terduga",
+        "Membahagiakan  hati"
+    ],
+    [
+        "Laba-laba  jantan  menari",
+        "Untuk  menarik  perhatian",
+        "Usaha  dan  kreativitas",
+        "Buka  jalan  rezeki"
+    ],
+    [
+        "Jangkrik  berkicau  malam",
+        "Suaranya  merdu  dan  tenang",
+        "Ketenangan  dan  kedamaian",
+        "Tarik  rezeki  ke  rumah"
+    ],
+    [
+        "Belalang  melompat  jauh",
+        "Dari  daun  ke  daun",
+        "Lompatan  besar  dalam  hidup",
+        "Bawa  rezeki  berlipat"
+    ],
+    [
+        "Capung  terbang  gesit",
+        "Warnanya  biru  metalik",
+        "Kecepatan  dan  kecerdasan",
+        "Bawa  keberhasilan"
+    ],
+    [
+        "Kumbang  badak  kuat",
+        "Tanduknya  kokoh  dan  keras",
+        "Kekuatan  dan  keteguhan",
+        "Atasi  semua  rintangan"
+    ],
+    [
+        "Kelinci  berlari  cepat",
+        "Menghindari  pemangsa",
+        "Kewaspadaan  dan  kecepatan",
+        "Selamatkan  dari  bahaya"
+    ],
+    [
+        "Landak  dengan  duri",
+        "Melindungi  diri  sendiri",
+        "Pertahanan  yang  kuat",
+        "Jaga  rezeki  yang  ada"
+    ],
+    [
+        "Tikus  mencari  makanan",
+        "Dengan  penuh  kecerdikan",
+        "Kecerdikan  dan  ketelitian",
+        "Temukan  jalan  rezeki"
+    ],
+    [
+        "Bajing  melompat  di  dahan",
+        "Dengan  lincah  dan  ceria",
+        "Keceriaan  dan  kelincahan",
+        "Bawa  rezeki  tak  terduga"
+    ],
+    [
+        "Kelelawar  buah  bergantung",
+        "Di  pohon  yang  tinggi",
+        "Istirahat  yang  cukup",
+        "Kembali  dengan  energi"
+    ],
+    [
+        "Trenggiling  menggulung  diri",
+        "Saat  merasa  terancam",
+        "Perlindungan  diri  yang  bijak",
+        "Jaga  aset  berharga"
+    ],
+    [
+        "Musang  pandai  mencuri",
+        "Telur  ayam  di  kandang",
+        "Kecerdikan  kadang  diperlukan",
+        "Untuk  dapatkan  rezeki"
+    ],
+    [
+        "Rakun  pencuci  makanan",
+        "Di  sungai  yang  jernih",
+        "Kebersihan  dan  kerapian",
+        "Bawa  keberuntungan"
+    ],
+    [
+        "Berang-berang  membangun  bendungan",
+        "Dengan  kayu  dan  lumpur",
+        "Kerja  sama  dan  kecerdasan",
+        "Buat  lingkungan  nyaman"
+    ],
+    [
+        "Anjing  laut  di  es",
+        "Berenang  dengan  lincah",
+        "Adaptasi  dengan  lingkungan",
+        "Kunci  bertahan  hidup"
+    ],
+    [
+        "Singa  laut  berjemur",
+        "Di  atas  batu  karang",
+        "Nikmati  hasil  kerja  keras",
+        "Dengan  penuh  syukur"
+    ],
+    [
+        "Paus  pembunuh  perkasa",
+        "Raja  di  lautan",
+        "Kekuasaan  dan  pengaruh",
+        "Bawa  rezeki  besar"
+    ],
+    [
+        "Lumba-lumba  hidung  botol",
+        "Cerdas  dan  ramah",
+        "Persahabatan  dan  kerja  sama",
+        "Buka  pintu  rezeki"
+    ],
+    [
+        "Hiu  berenang  gesit",
+        "Pemangsa  puncak",
+        "Ketajaman  dan  fokus",
+        "Raih  target  dengan  mudah"
+    ],
+    [
+        "Pari  manta  besar",
+        "Terbang  di  dalam  air",
+        "Kebesaran  hati  dan  jiwa",
+        "Tarik  rezeki  berlimpah"
+    ],
+    [
+        "Ubur-ubur  transparan",
+        "Berenang  dengan  lembut",
+        "Fleksibilitas  dan  kelembutan",
+        "Atasi  masalah  dengan  mudah"
+    ],
+    [
+        "Teripang  di  dasar  laut",
+        "Membersihkan  pasir",
+        "Kesederhanaan  dan  manfaat",
+        "Dihargai  dengan  setimpal"
+    ],
+    [
+        "Kepiting  kelapa  kuat",
+        "Mampu  memecah  kelapa",
+        "Kekuatan  yang  tersembunyi",
+        "Bawa  hasil  luar  biasa"
+    ],
+    [
+        "Lobster  berduri  tajam",
+        "Melindungi  diri  sendiri",
+        "Pertahanan  yang  kuat",
+        "Jaga  kekayaan  yang  ada"
+    ],
+    [
+        "Siput  bawa  rumahnya",
+        "Kemanapun  pergi",
+        "Rumah  adalah  tempat  kembali",
+        "Sumber  rezeki  dan  damai"
+    ],
+    [
+        "Kerang  menghasilkan  mutiara",
+        "Dari  butiran  pasir",
+        "Kesulitan  yang  dihadapi",
+        "Menjadi  sesuatu  berharga"
+    ],
+    [
+        "Tiram  di  dasar  laut",
+        "Menyaring  makanan",
+        "Kesabaran  dan  ketelitian",
+        "Bawa  hasil  memuaskan"
+    ],
+    [
+        "Gurita  mimikri  hebat",
+        "Bisa  berubah  warna",
+        "Kemampuan  beradaptasi",
+        "Bawa  keberhasilan"
+    ],
+    [
+        "Cumi-cumi  raksasa",
+        "Hidup  di  kedalaman",
+        "Misteri  dan  kedalaman  pikiran",
+        "Sumber  ide  brilian"
+    ],
+    [
+        "Nautilus  cangkang  indah",
+        "Spiral  sempurna",
+        "Keseimbangan  dan  keindahan",
+        "Bawa  rezeki  harmonis"
+    ],
+    [
+        "Ikan  badut  di  anemon",
+        "Hidup  saling  menguntungkan",
+        "Kerjasama  dan  simbiosis",
+        "Bawa  keuntungan  bersama"
+    ],
+    [
+        "Ikan  pari  listrik",
+        "Kejutan  tak  terduga",
+        "Rezeki  datang  tiba-tiba",
+        "Mengagetkan  namun  menyenangkan"
+    ],
+    [
+        "Ikan  layaran  cepat",
+        "Sirip  seperti  layar",
+        "Kecepatan  dan  ketangkasan",
+        "Dahului  yang  lain"
+    ],
+    [
+        "Ikan  pedang  tajam",
+        "Moncong  seperti  pedang",
+        "Ketajaman  pikiran  dan  tindakan",
+        "Buka  jalan  rezeki"
+    ],
+    [
+        "Ikan  buntal  mengembang",
+        "Saat  merasa  terancam",
+        "Pertahanan  diri  yang  unik",
+        "Lindungi  rezeki  yang  ada"
+    ],
+    [
+        "Ikan  lele  kumis  panjang",
+        "Hidup  di  dasar  berlumpur",
+        "Ketekunan  dalam  kondisi  sulit",
+        "Bawa  hasil  memuaskan"
+    ],
+    [
+        "Ikan  mas  koki  cantik",
+        "Berenang  di  akuarium",
+        "Keindahan  dan  keunikan",
+        "Sumber  rezeki  dan  kebahagiaan"
+    ],
+    [
+        "Ikan  arwana  elegan",
+        "Dipercaya  pembawa  hoki",
+        "Kepercayaan  dan  keyakinan",
+        "Bawa  rezeki  berlimpah"
+    ],
+    [
+        "Ikan  cupang  warna-warni",
+        "Siripnya  indah  berkibar",
+        "Keindahan  dan  keberanian",
+        "Menarik  perhatian  rezeki"
+    ],
+    [
+        "Ikan  guppy  kecil",
+        "Berkembang  biak  cepat",
+        "Kesuburan  dan  kelimpahan",
+        "Rezeki  beranak  pinak"
+    ],
+    [
+        "Ikan  discus  bundar",
+        "Warnanya  memesona",
+        "Harmoni  dan  keseimbangan",
+        "Bawa  kedamaian  dan  rezeki"
+    ]
+],
+
+            // Prediction Patterns
+            patterns: {
+                colokBebas: ["0-7", "1-8", "2-9", "3-6", "4-5", "5-4", "6-3", "7-2", "8-1", "9-0"],
+                kepala: ["12", "34", "56", "78", "90", "23", "45", "67", "89", "01"],
+                ekor: ["98", "76", "54", "32", "10", "87", "65", "43", "21", "09"],
+                colok2d: ["12-34", "23-45", "34-56", "45-67", "56-78", "67-89", "78-90", "89-01", "90-12", "01-23"]
+            }
+        };
+
+        // Utility Functions
+        class Utils {
+            static randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            static randomElement(array) {
+                return array[Utils.randomInt(0, array.length - 1)];
+            }
+
+            static generateNumber(digits) {
+                let result = '';
+                for (let i = 0; i < digits; i++) {
+                    result += Utils.randomInt(0, 9);
+                }
+                return result;
+            }
+
+            static shuffleArray(array) {
+                const shuffled = [...array];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled;
+            }
+
+            static showToast(title, message, duration = 3000) {
+                const toast = document.getElementById('toast');
+                const toastTitle = document.getElementById('toastTitle');
+                const toastMessage = document.getElementById('toastMessage');
+                
+                toastTitle.textContent = title;
+                toastMessage.textContent = message;
+                toast.classList.add('show');
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, duration);
+            }
+
+            static formatDate(date = new Date()) {
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric'
+                };
+                return date.toLocaleDateString('id-ID', options);
+            }
+
+            static createParticles() {
+                const container = document.getElementById('particleContainer');
+                const particleCount = 25;
+
+                for (let i = 0; i < particleCount; i++) {
+                    this.createParticle(container);
+                }
+            }
+
+            static createParticle(container) {
+                const dot = document.createElement('div');
+                
+                const sizes = ['size-s', 'size-m', 'size-l'];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                dot.classList.add('red-dot', randomSize);
+
+                const posX = (Math.random() * 80) + 10;
+                const posY = (Math.random() * 80) + 10;
+
+                dot.style.left = `${posX}%`;
+                dot.style.top = `${posY}%`;
+
+                dot.style.animationDelay = `${Math.random() * 4}s`;
+                dot.style.animationDuration = `${3 + Math.random() * 2}s`;
+
+                container.appendChild(dot);
+            }
+
+            static isValidUrl(string) {
+                try {
+                    new URL(string);
+                    return true;
+                } catch (_) {
+                    return false;
+                }
+            }
+
+            static preloadImage(url) {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = reject;
+                    img.src = url;
+                });
+            }
+        }
+
+        // Quick Copy Manager
+        class QuickCopyManager {
+            constructor() {
+                this.initCopyButtons();
+            }
+            
+            initCopyButtons() {
+                const copyButtons = [
+                    { id: 'copyBgBtn', label: 'Background Aplikasi' },
+                    { id: 'copySyairBgBtn', label: 'Background Syair' },
+                    { id: 'copyLogoBtn', label: 'Logo Header' }
+                ];
+                
+                copyButtons.forEach(button => {
+                    const element = document.getElementById(button.id);
+                    if (element) {
+                        element.addEventListener('click', () => {
+                            this.copyToClipboard(element.dataset.url, button.label, element);
+                        });
+                    }
+                });
+            }
+            
+            async copyToClipboard(text, label, button) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    
+                    // Visual feedback
+                    const originalText = button.querySelector('.copy-text').textContent;
+                    button.classList.add('copied');
+                    button.querySelector('.copy-text').textContent = '✓ Tersalin!';
+                    
+                    // Show toast notification
+                    Utils.showToast('Berhasil Disalin', `URL ${label} telah disalin ke clipboard`);
+                    
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        button.classList.remove('copied');
+                        button.querySelector('.copy-text').textContent = originalText;
+                    }, 2000);
+                    
+                    // Also auto-fill the corresponding input field
+                    this.autoFillInput(text, label);
+                    
+                } catch (err) {
+                    console.error('Gagal menyalin:', err);
+                    Utils.showToast('Gagal', 'Tidak dapat menyalin ke clipboard', 2000);
+                    
+                    // Fallback for older browsers
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    try {
+                        document.execCommand('copy');
+                        Utils.showToast('Berhasil', 'URL telah disalin');
+                    } catch (fallbackErr) {
+                        Utils.showToast('Error', 'Gagal menyalin URL');
+                    }
+                    document.body.removeChild(textArea);
+                }
+            }
+            
+            autoFillInput(text, label) {
+                let inputId = '';
+                
+                switch(label) {
+                    case 'Background Aplikasi':
+                        inputId = 'bgInput';
+                        break;
+                    case 'Background Syair':
+                        inputId = 'syairBgInput';
+                        break;
+                    case 'Logo Header':
+                        inputId = 'logoInput';
+                        break;
+                }
+                
+                if (inputId) {
+                    const input = document.getElementById(inputId);
+                    if (input) {
+                        input.value = text;
+                        
+                        // Show preview if available
+                        const previewId = inputId.replace('Input', 'Preview');
+                        const preview = document.getElementById(previewId);
+                        if (preview) {
+                            preview.src = text;
+                            preview.style.display = 'inline-block';
+                        }
+                        
+                        // Show a small notification
+                        setTimeout(() => {
+                            input.focus();
+                        }, 100);
+                    }
+                }
+            }
+        }
+
+        // Customization Manager
+        class CustomizationManager {
+            constructor() {
+                this.customizations = {
+                    background: '',
+                    syairBackground: '',
+                    logo: '',
+                    customDate: null
+                };
+                this.loadCustomizations();
+            }
+
+            loadCustomizations() {
+                try {
+                    const saved = localStorage.getItem('lunaTogelCustomizations');
+                    if (saved) {
+                        this.customizations = JSON.parse(saved);
+                        this.applyAllCustomizations();
+                    }
+                } catch (e) {
+                    console.warn('Could not load customizations:', e);
+                }
+            }
+
+            saveCustomizations() {
+                try {
+                    localStorage.setItem('lunaTogelCustomizations', JSON.stringify(this.customizations));
+                } catch (e) {
+                    console.warn('Could not save customizations:', e);
+                }
+            }
+
+            async setBackground(url) {
+                if (!url) {
+                    this.customizations.background = '';
+                    document.body.style.setProperty('--custom-bg', 'none');
+                    this.saveCustomizations();
+                    return true;
+                }
+
+                if (!Utils.isValidUrl(url)) {
+                    Utils.showToast('Error', 'URL tidak valid');
+                    return false;
+                }
+
+                try {
+                    await Utils.preloadImage(url);
+                    this.customizations.background = url;
+                    document.body.style.setProperty('--custom-bg', `url('${url}')`);
+                    this.saveCustomizations();
+                    return true;
+                } catch (e) {
+                    Utils.showToast('Error', 'Gagal memuat gambar background');
+                    return false;
+                }
+            }
+
+            async setSyairBackground(url) {
+                if (!url) {
+                    this.customizations.syairBackground = '';
+                    document.getElementById('syairCard').style.setProperty('--syair-bg', 'none');
+                    this.saveCustomizations();
+                    return true;
+                }
+
+                if (!Utils.isValidUrl(url)) {
+                    Utils.showToast('Error', 'URL tidak valid');
+                    return false;
+                }
+
+                try {
+                    await Utils.preloadImage(url);
+                    this.customizations.syairBackground = url;
+                    document.getElementById('syairCard').style.setProperty('--syair-bg', `url('${url}')`);
+                    this.saveCustomizations();
+                    return true;
+                } catch (e) {
+                    Utils.showToast('Error', 'Gagal memuat gambar background syair');
+                    return false;
+                }
+            }
+
+            async setLogo(url) {
+                if (!url) {
+                    this.customizations.logo = '';
+                    document.getElementById('headerLogo').style.display = 'none';
+                    this.saveCustomizations();
+                    return true;
+                }
+
+                if (!Utils.isValidUrl(url)) {
+                    Utils.showToast('Error', 'URL tidak valid');
+                    return false;
+                }
+
+                try {
+                    await Utils.preloadImage(url);
+                    this.customizations.logo = url;
+                    const logoElement = document.getElementById('headerLogo');
+                    logoElement.src = url;
+                    logoElement.style.display = 'block';
+                    this.saveCustomizations();
+                    return true;
+                } catch (e) {
+                    Utils.showToast('Error', 'Gagal memuat logo');
+                    return false;
+                }
+            }
+
+            setCustomDate(date) {
+                this.customizations.customDate = date ? date.toISOString() : null;
+                this.saveCustomizations();
+                return true;
+            }
+
+            applyAllCustomizations() {
+                if (this.customizations.background) {
+                    document.body.style.setProperty('--custom-bg', `url('${this.customizations.background}')`);
+                }
+
+                if (this.customizations.syairBackground) {
+                    document.getElementById('syairCard').style.setProperty('--syair-bg', `url('${this.customizations.syairBackground}')`);
+                }
+
+                if (this.customizations.logo) {
+                    const logoElement = document.getElementById('headerLogo');
+                    logoElement.src = this.customizations.logo;
+                    logoElement.style.display = 'block';
+                }
+            }
+
+            resetAll() {
+                this.customizations = {
+                    background: '',
+                    syairBackground: '',
+                    logo: '',
+                    customDate: null
+                };
+                this.saveCustomizations();
+                this.applyAllCustomizations();
+                return true;
+            }
+        }
+
+        // Application State Management
+        class AppState {
+            constructor() {
+                this.currentShio = null;
+                this.currentPasaran = null;
+                this.currentPrediction = null;
+                this.history = [];
+                this.customizationManager = new CustomizationManager();
+                this.initialize();
+            }
+
+            initialize() {
+                // Set default shio
+                this.currentShio = DataRepository.shioData.find(
+                    shio => shio.id === CONFIG.defaultShio
+                ) || DataRepository.shioData[5];
+                
+                // Set default pasaran
+                this.currentPasaran = DataRepository.pasaranData.find(
+                    pasaran => pasaran.id === CONFIG.defaultPasaran
+                ) || DataRepository.pasaranData[0];
+                
+                // Load history from localStorage
+                this.loadHistory();
+            }
+
+            loadHistory() {
+                try {
+                    const saved = localStorage.getItem('lunaTogelHistory');
+                    if (saved) {
+                        this.history = JSON.parse(saved);
+                    }
+                } catch (e) {
+                    console.warn('Could not load history:', e);
+                }
+            }
+
+            saveToHistory() {
+                if (!this.currentPrediction) return;
+
+                const historyItem = {
+                    timestamp: new Date().toISOString(),
+                    shio: this.currentShio.id,
+                    pasaran: this.currentPasaran.id,
+                    prediction: this.currentPrediction
+                };
+
+                this.history.unshift(historyItem);
+                
+                // Keep only last 100 items
+                if (this.history.length > 100) {
+                    this.history = this.history.slice(0, 100);
+                }
+
+                // Save to localStorage
+                try {
+                    localStorage.setItem('lunaTogelHistory', JSON.stringify(this.history));
+                } catch (e) {
+                    console.warn('Could not save history:', e);
+                }
+            }
+
+            getRandomPasaran() {
+                return Utils.randomElement(DataRepository.pasaranData);
+            }
+
+            getRandomShio() {
+                return Utils.randomElement(DataRepository.shioData);
+            }
+
+            getDisplayDate() {
+                if (this.customizationManager.customizations.customDate) {
+                    return new Date(this.customizationManager.customizations.customDate);
+                }
+                return new Date();
+            }
+        }
+
+        // Prediction Generator
+        class PredictionGenerator {
+            static generate(shio, pasaran) {
+                // Generate main number (5 digits)
+                const angkaMain = Utils.generateNumber(5);
+                
+                // Generate BBFS (7 digits)
+                const bbfs = Utils.generateNumber(7);
+                
+                // Generate number grid (12 numbers)
+                const numberGrid = Array.from({ length: 12 }, () => {
+                    const is3D = Math.random() > 0.5;
+                    const digits = is3D ? 3 : 2;
+                    return {
+                        value: Utils.generateNumber(digits),
+                        is3D
+                    };
+                });
+                
+                // Generate predictions
+                const predictions = {
+                    colokBebas: Utils.randomElement(DataRepository.patterns.colokBebas),
+                    kepala: Utils.randomElement(DataRepository.patterns.kepala),
+                    ekor: Utils.randomElement(DataRepository.patterns.ekor),
+                    colok2d: Utils.randomElement(DataRepository.patterns.colok2d)
+                };
+                
+                return {
+                    shio: shio.id,
+                    pasaran: pasaran.id,
+                    timestamp: new Date().toISOString(),
+                    angkaMain,
+                    bbfs,
+                    numberGrid,
+                    predictions
+                };
+            }
+        }
+
+        // Syair Generator
+        class SyairGenerator {
+            static generate() {
+                return Utils.randomElement(DataRepository.syairTemplates);
+            }
+        }
+
+        // UI Manager
+        class UIManager {
+            constructor() {
+                this.elements = {
+                    currentDateText: document.getElementById('currentDateText'),
+                    dateEditBtn: document.getElementById('dateEditBtn'),
+                    dateInputContainer: document.getElementById('dateInputContainer'),
+                    dateInput: document.getElementById('dateInput'),
+                    dateConfirmBtn: document.getElementById('dateConfirmBtn'),
+                    dateResetBtn: document.getElementById('dateResetBtn'),
+                    headerLogo: document.getElementById('headerLogo'),
+                    
+                    pasaranLogoCard: document.getElementById('pasaranLogoCard'),
+                    currentPasaranLogo: document.getElementById('currentPasaranLogo'),
+                    currentPasaranName: document.getElementById('currentPasaranName'),
+                    randomPasaranBtn: document.getElementById('randomPasaranBtn'),
+                    pasaranContainer: document.getElementById('pasaranContainer'),
+                    
+                    shioCard: document.getElementById('shioCard'),
+                    shioImage: document.getElementById('shioImage'),
+                    shioName: document.getElementById('shioName'),
+                    syairContent: document.getElementById('syairContent'),
+                    
+                    angkaMainDisplay: document.getElementById('angkaMainDisplay'),
+                    bbfsDisplay: document.getElementById('bbfsDisplay'),
+                    numberGrid: document.getElementById('numberGrid'),
+                    colokBebas: document.getElementById('colokBebas'),
+                    kepala: document.getElementById('kepala'),
+                    ekor: document.getElementById('ekor'),
+                    colok2d: document.getElementById('colok2d'),
+                    
+                    generateButton: document.getElementById('generateButton'),
+                    saveButton: document.getElementById('saveButton'),
+                    
+                    // Customization elements
+                    bgInput: document.getElementById('bgInput'),
+                    bgApplyBtn: document.getElementById('bgApplyBtn'),
+                    bgPreview: document.getElementById('bgPreview'),
+                    bgResetBtn: document.getElementById('bgResetBtn'),
+                    
+                    syairBgInput: document.getElementById('syairBgInput'),
+                    syairBgApplyBtn: document.getElementById('syairBgApplyBtn'),
+                    syairBgPreview: document.getElementById('syairBgPreview'),
+                    syairBgResetBtn: document.getElementById('syairBgResetBtn'),
+                    
+                    logoInput: document.getElementById('logoInput'),
+                    logoApplyBtn: document.getElementById('logoApplyBtn'),
+                    logoPreview: document.getElementById('logoPreview'),
+                    logoResetBtn: document.getElementById('logoResetBtn')
+                };
+
+                this.appState = new AppState();
+                this.quickCopyManager = new QuickCopyManager();
+                this.bindEvents();
+                this.initializeDate();
+                this.initializeCustomizationInputs();
+                Utils.createParticles();
+            }
+
+            initializeDate() {
+                this.updateDateDisplay();
+                
+                // Set current date in date input
+                const today = new Date();
+                this.elements.dateInput.value = today.toISOString().split('T')[0];
+                
+                // Update date every minute
+                setInterval(() => this.updateDateDisplay(), 60000);
+            }
+
+            updateDateDisplay() {
+                const displayDate = this.appState.getDisplayDate();
+                this.elements.currentDateText.textContent = Utils.formatDate(displayDate);
+            }
+
+            initializeCustomizationInputs() {
+                // Load saved customizations into input fields
+                const customizations = this.appState.customizationManager.customizations;
+                
+                if (customizations.background) {
+                    this.elements.bgInput.value = customizations.background;
+                    this.elements.bgPreview.src = customizations.background;
+                    this.elements.bgPreview.style.display = 'inline-block';
+                }
+                
+                if (customizations.syairBackground) {
+                    this.elements.syairBgInput.value = customizations.syairBackground;
+                    this.elements.syairBgPreview.src = customizations.syairBackground;
+                    this.elements.syairBgPreview.style.display = 'inline-block';
+                }
+                
+                if (customizations.logo) {
+                    this.elements.logoInput.value = customizations.logo;
+                    this.elements.logoPreview.src = customizations.logo;
+                    this.elements.logoPreview.style.display = 'inline-block';
+                }
+            }
+
+            renderPasaranSelector() {
+                const container = this.elements.pasaranContainer;
+                const currentPasaran = this.appState.currentPasaran;
+                
+                container.innerHTML = DataRepository.pasaranData.map(pasaran => `
+                    <div class="pasaran-card ${pasaran.id === currentPasaran.id ? 'active' : ''}" 
+                         data-pasaran-id="${pasaran.id}">
+                        <img class="pasaran-logo-small" src="${pasaran.logo}" alt="${pasaran.name}">
+                        <div class="pasaran-name-small">${pasaran.name}</div>
+                    </div>
+                `).join('');
+                
+                // Update large pasaran logo
+                this.elements.currentPasaranLogo.src = currentPasaran.logo;
+                this.elements.currentPasaranLogo.alt = currentPasaran.id;
+                this.elements.currentPasaranName.textContent = currentPasaran.id;
+                
+                // Add event listeners to pasaran cards
+                document.querySelectorAll('.pasaran-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const pasaranId = card.dataset.pasaranId;
+                        const pasaran = DataRepository.pasaranData.find(p => p.id === pasaranId);
+                        this.setCurrentPasaran(pasaran);
+                    });
+                });
+            }
+
+            setCurrentPasaran(pasaran) {
+                this.appState.currentPasaran = pasaran;
+                this.renderPasaranSelector();
+                this.generateNewPrediction();
+                
+                Utils.showToast(
+                    'Pasaran Diubah',
+                    `Pasaran ${pasaran.id} telah dipilih`
+                );
+            }
+
+            randomizePasaran() {
+                const randomPasaran = this.appState.getRandomPasaran();
+                this.setCurrentPasaran(randomPasaran);
+            }
+
+            updateShioDisplay() {
+                const shio = this.appState.currentShio;
+                
+                this.elements.shioImage.src = shio.image;
+                this.elements.shioImage.alt = shio.name;
+                this.elements.shioName.textContent = shio.name;
+                this.elements.shioName.style.color = shio.color;
+                
+                // Update card border color
+                this.elements.shioCard.style.borderLeft = `4px solid ${shio.color}`;
+            }
+
+            updateNumbersDisplay(prediction) {
+                // Update main numbers
+                this.elements.angkaMainDisplay.textContent = prediction.angkaMain;
+                this.elements.bbfsDisplay.textContent = prediction.bbfs;
+                
+                // Update number grid
+                this.elements.numberGrid.innerHTML = prediction.numberGrid.map(num => `
+                    <div class="number-item ${num.is3D ? 'three-digit' : ''}">
+                        ${num.value}
+                    </div>
+                `).join('');
+                
+                // Update predictions
+                this.elements.colokBebas.textContent = prediction.predictions.colokBebas;
+                this.elements.kepala.textContent = prediction.predictions.kepala;
+                this.elements.ekor.textContent = prediction.predictions.ekor;
+                this.elements.colok2d.textContent = prediction.predictions.colok2d;
+            }
+
+            updateSyairDisplay(syairLines) {
+                this.elements.syairContent.innerHTML = syairLines.map(line => `
+                    <span class="syair-line">${line}</span>
+                `).join('');
+            }
+
+            generateNewPrediction() {
+                // Get random shio
+                this.appState.currentShio = this.appState.getRandomShio();
+                
+                // Generate new prediction
+                this.appState.currentPrediction = PredictionGenerator.generate(
+                    this.appState.currentShio,
+                    this.appState.currentPasaran
+                );
+                
+                // Generate syair
+                const syairLines = SyairGenerator.generate();
+                
+                // Update UI
+                this.updateShioDisplay();
+                this.updateNumbersDisplay(this.appState.currentPrediction);
+                this.updateSyairDisplay(syairLines);
+                
+                // Save to history
+                this.appState.saveToHistory();
+                
+                // Show notification
+                Utils.showToast(
+                    'Prediksi Baru',
+                    `Shio ${this.appState.currentShio.name} telah digenerate`
+                );
+                
+                // Add animation effect
+                this.animateNumbers();
+            }
+
+            animateNumbers() {
+                const numbers = [
+                    this.elements.angkaMainDisplay,
+                    this.elements.bbfsDisplay
+                ];
+                
+                numbers.forEach(number => {
+                    number.style.transform = 'scale(1.05)';
+                    number.style.transition = 'transform 0.3s';
+                    
+                    setTimeout(() => {
+                        number.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            }
+
+            saveCurrentPrediction() {
+                if (!this.appState.currentPrediction) {
+                    Utils.showToast('Error', 'Tidak ada prediksi untuk disimpan', 2000);
+                    return;
+                }
+
+                const data = {
+                    app: CONFIG,
+                    date: Utils.formatDate(this.appState.getDisplayDate()),
+                    shio: this.appState.currentShio,
+                    pasaran: this.appState.currentPasaran,
+                    prediction: this.appState.currentPrediction
+                };
+
+                // Create and download JSON file
+                const blob = new Blob([JSON.stringify(data, null, 2)], { 
+                    type: 'application/json' 
+                });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                
+                const filename = `syaire_luna_${this.appState.currentShio.id}_${Date.now()}.json`;
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                Utils.showToast('Tersimpan', 'Prediksi berhasil disimpan', 2000);
+            }
+
+            bindEvents() {
+                // Generate button
+                this.elements.generateButton.addEventListener('click', () => {
+                    this.generateNewPrediction();
+                });
+
+                // Save button
+                this.elements.saveButton.addEventListener('click', () => {
+                    this.saveCurrentPrediction();
+                });
+
+                // Random pasaran button
+                this.elements.randomPasaranBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    this.randomizePasaran();
+                });
+
+                // Click on current pasaran display to randomize
+                this.elements.pasaranLogoCard.addEventListener('click', (e) => {
+                    if (!e.target.closest('.random-pasaran-btn')) {
+                        this.randomizePasaran();
+                    }
+                });
+
+                // Date edit functionality
+                this.elements.dateEditBtn.addEventListener('click', () => {
+                    this.elements.dateInputContainer.classList.toggle('show');
+                });
+
+                this.elements.dateConfirmBtn.addEventListener('click', () => {
+                    const dateValue = this.elements.dateInput.value;
+                    if (dateValue) {
+                        const selectedDate = new Date(dateValue);
+                        this.appState.customizationManager.setCustomDate(selectedDate);
+                        this.updateDateDisplay();
+                        this.elements.dateInputContainer.classList.remove('show');
+                        Utils.showToast('Berhasil', 'Tanggal telah diperbarui');
+                    }
+                });
+
+                this.elements.dateResetBtn.addEventListener('click', () => {
+                    this.appState.customizationManager.setCustomDate(null);
+                    this.updateDateDisplay();
+                    this.elements.dateInputContainer.classList.remove('show');
+                    Utils.showToast('Berhasil', 'Tanggal telah direset');
+                });
+
+                // Background customization
+                this.elements.bgApplyBtn.addEventListener('click', async () => {
+                    const url = this.elements.bgInput.value.trim();
+                    const success = await this.appState.customizationManager.setBackground(url);
+                    if (success) {
+                        if (url) {
+                            this.elements.bgPreview.src = url;
+                            this.elements.bgPreview.style.display = 'inline-block';
+                        } else {
+                            this.elements.bgPreview.style.display = 'none';
+                        }
+                        Utils.showToast('Berhasil', 'Background telah diperbarui');
+                    }
+                });
+
+                this.elements.bgResetBtn.addEventListener('click', async () => {
+                    this.elements.bgInput.value = '';
+                    this.elements.bgPreview.style.display = 'none';
+                    await this.appState.customizationManager.setBackground('');
+                    Utils.showToast('Berhasil', 'Background telah direset');
+                });
+
+                // Syair background customization
+                this.elements.syairBgApplyBtn.addEventListener('click', async () => {
+                    const url = this.elements.syairBgInput.value.trim();
+                    const success = await this.appState.customizationManager.setSyairBackground(url);
+                    if (success) {
+                        if (url) {
+                            this.elements.syairBgPreview.src = url;
+                            this.elements.syairBgPreview.style.display = 'inline-block';
+                        } else {
+                            this.elements.syairBgPreview.style.display = 'none';
+                        }
+                        Utils.showToast('Berhasil', 'Background syair telah diperbarui');
+                    }
+                });
+
+                this.elements.syairBgResetBtn.addEventListener('click', async () => {
+                    this.elements.syairBgInput.value = '';
+                    this.elements.syairBgPreview.style.display = 'none';
+                    await this.appState.customizationManager.setSyairBackground('');
+                    Utils.showToast('Berhasil', 'Background syair telah direset');
+                });
+
+                // Logo customization
+                this.elements.logoApplyBtn.addEventListener('click', async () => {
+                    const url = this.elements.logoInput.value.trim();
+                    const success = await this.appState.customizationManager.setLogo(url);
+                    if (success) {
+                        if (url) {
+                            this.elements.logoPreview.src = url;
+                            this.elements.logoPreview.style.display = 'inline-block';
+                        } else {
+                            this.elements.logoPreview.style.display = 'none';
+                        }
+                        Utils.showToast('Berhasil', 'Logo telah diperbarui');
+                    }
+                });
+
+                this.elements.logoResetBtn.addEventListener('click', async () => {
+                    this.elements.logoInput.value = '';
+                    this.elements.logoPreview.style.display = 'none';
+                    await this.appState.customizationManager.setLogo('');
+                    Utils.showToast('Berhasil', 'Logo telah direset');
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.code === 'Space' || e.code === 'Enter') {
+                        e.preventDefault();
+                        this.generateNewPrediction();
+                    }
+                    
+                    if (e.ctrlKey && e.code === 'KeyS') {
+                        e.preventDefault();
+                        this.saveCurrentPrediction();
+                    }
+                    
+                    if (e.code === 'KeyR' && e.ctrlKey) {
+                        e.preventDefault();
+                        this.randomizePasaran();
+                    }
+                });
+            }
+
+            initialize() {
+                this.renderPasaranSelector();
+                this.generateNewPrediction();
+            }
+        }
+
+        // Initialize Application
+        function initializeApp() {
+            // Create UI Manager instance
+            const uiManager = new UIManager();
+            
+            // Initialize application
+            uiManager.initialize();
+            
+            // Log initialization
+            console.log(`🌟 ${CONFIG.appName} v${CONFIG.version} initialized`);
+            
+            // Add animation to body after load
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.transition = 'opacity 0.5s';
+            }, 100);
+        }
+
+        // Start when DOM is ready
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    </script>
+</body>
+</html>
