@@ -5,8 +5,8 @@ compatibility_date = "2024-01-01"
 directory = "./assets"
 binding = "ASSETS"
 
-# Sambungan ke Database D1
 [[d1_databases]]
 binding = "DB"
 database_name = "aura-db"
-database_id = "14e8a5df-0610-4a45-ae87-5cd86732d584" # GANTI DENGAN ID DARI CLOUDFLARE
+database_id = "14e8a5df-0610-4a45-ae87-5cd86732d584" # GANTI DENGAN ID ASLI
+preview_database_id = "14e8a5df-0610-4a45-ae87-5cd86732d584" # TAMBAHKAN BARIS INI JUGA DENGAN ID YANG SAMA
