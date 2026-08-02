@@ -232,24 +232,37 @@
 
   <div class="toast" id="toastEl"><div class="toast-content" id="toastMsg">Success</div></div>
 
-  <script>
-    // CEK LOGIN
+    <script>
+    // CEK LOGIN & ACCESS CONTROL
     const authToken = localStorage.getItem('aura_auth_token');
-    if (!authToken) { window.location.href = '/Login.html'; }
-    else { document.getElementById('userEmail').textContent = authToken + '@aura.os'; }
+    const userRole = localStorage.getItem('aura_user_role');
+    
+    if (!authToken) { 
+      window.location.href = '/Login.html'; 
+    } else if (userRole !== 'ADMIN') {
+      // Jika bukan admin, tendang ke dashboard!
+      alert('Akses Ditolak! Halaman ini khusus untuk Admin.');
+      window.location.href = '/Dashboard.html';
+    } else {
+      document.getElementById('userEmail').textContent = authToken + '@aura.os';
+    }
+    
     function logout() { localStorage.clear(); window.location.href = '/Login.html'; }
 
     let usersData = [];
 
-    // LOAD USERS DARI API CLOUDFLARE D1
+    // LOAD USERS DARI BACKEND
     async function loadUsers() {
       try {
-        const res = await fetch('/api/users');
+        const res = await fetch('/api/users', {
+          headers: { 'x-auth-token': authToken }
+        });
+        if (res.status === 403) { alert('Sesi admin berakhir!'); window.location.href = '/Login.html'; return; }
         usersData = await res.json();
         document.getElementById('statTotal').textContent = usersData.length;
         renderTable();
       } catch (err) {
-        showToast('Gagal memuat data user', 'error');
+        showToast('Gagal memuat data user');
       }
     }
 
@@ -285,17 +298,29 @@
       setTimeout(() => t.classList.remove('show'), 3000);
     }
 
-    function confirmDelete(username) {
-       if(confirm('Hapus user @' + username + '?')) {
-           // Dummy delete (Frontend only untuk sementara)
-           usersData = usersData.filter(u => u.username !== username);
-           document.getElementById('statTotal').textContent = usersData.length;
-           renderTable();
-           showToast('User dihapus (Simulasi Frontend)');
+    // HAPUS USER KE BACKEND
+    async function confirmDelete(username) {
+       if(confirm('Hapus user @' + username + ' dari database?')) {
+           try {
+             const res = await fetch(`/api/users/${encodeURIComponent(username)}`, {
+               method: 'DELETE',
+               headers: { 'x-auth-token': authToken }
+             });
+             const data = await res.json();
+             if (data.success) {
+               showToast('User berhasil dihapus!');
+               loadUsers(); // Reload data dari DB
+             } else {
+               showToast(data.error || 'Gagal menghapus');
+             }
+           } catch(err) {
+             showToast('Kesalahan koneksi');
+           }
        }
     }
 
-    function submitAddUser() {
+    // TAMBAH USER KE BACKEND
+    async function submitAddUser() {
       const data = {
         username: document.getElementById('addUsername').value,
         password: document.getElementById('addPassword').value,
@@ -303,19 +328,30 @@
       };
       
       if (!data.username || !data.password || !data.role) {
-        showToast('Semua kolom wajib diisi!', 'error'); return;
+        showToast('Semua kolom wajib diisi!'); return;
       }
       
-      // Dummy Add (Frontend only)
-      usersData.push(data);
-      document.getElementById('statTotal').textContent = usersData.length;
-      renderTable();
-      closeModal();
-      showToast('User berhasil ditambahkan (Simulasi Frontend)');
-      
-      document.getElementById('addUsername').value = '';
-      document.getElementById('addPassword').value = '';
-      document.getElementById('addRole').value = '';
+      try {
+        const res = await fetch('/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-auth-token': authToken },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        
+        if (result.success) {
+          closeModal();
+          showToast('User berhasil ditambahkan ke database!');
+          loadUsers(); // Reload data dari DB
+          document.getElementById('addUsername').value = '';
+          document.getElementById('addPassword').value = '';
+          document.getElementById('addRole').value = '';
+        } else {
+          showToast(result.error || 'Gagal menambah user');
+        }
+      } catch(err) {
+        showToast('Kesalahan koneksi');
+      }
     }
 
     // Init
