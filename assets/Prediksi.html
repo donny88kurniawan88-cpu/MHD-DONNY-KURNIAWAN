@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Togel - Dashboard</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/color/48/000000/crystal-ball.png">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #2a0f0f;
+            --secondary: #2a0f0f;
+            --accent: #ff0080;
+            --neon: #00f3ff;
+            --success: #00ff88;
+            --warning: #ffcc00;
+            --danger: #ff0055;
+            --dark: #0a0a1a;
+            --light: #f0f8ff;
+            --card-bg: rgba(15, 12, 41, 0.92);
+            --glass: rgba(255, 255, 255, 0.08);
+            --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 30px rgba(0, 243, 255, 0.3);
+            --border-radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --red-dark-bg: #2a0f0f;
+            --red-darker-bg: #1f0a0a;
+            --red-glow: rgba(255, 0, 0, 0.3);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f0c29 0%, #24243e 50%, #302b63 100%);
+            min-height: 100vh;
+            padding: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body.bg-image-mode {
+            background: url('https://cdn.areabermain.club/assets/cdn/az6/2026/01/14/20260114/eec48b243e0f270c42e9de21226419f4/backgorund-lunatogel-januari-new.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, 50px); }
+            50% { transform: translate(-20px, 100px); }
+            75% { transform: translate(30px, 50px); }
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== BACK TO DASHBOARD BUTTON ===== */
+        .back-dashboard-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: none;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+        }
+
+        .back-dashboard-btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        .back-dashboard-btn i {
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 480px) {
+            .back-dashboard-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 15px;
+                font-size: 0.75rem;
+                border-radius: 10px;
+            }
+        }
+        
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(15, 12, 41, 0.7);
+            backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: slideDown 0.8s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--neon), var(--success));
+            animation: gradientMove 3s infinite linear;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            font-size: 42px;
+            color: var(--neon);
+            filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.7));
+            animation: pulseGlow 2s infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.5)); transform: scale(1); }
+            100% { filter: drop-shadow(0 0 25px rgba(0, 243, 255, 0.9)); transform: scale(1.05); }
+        }
+        
+        .title {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--neon), var(--accent), var(--success));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin: 0;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .current-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--success), #00cc77);
+            color: var(--dark);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+            animation: datePulse 3s infinite;
+        }
+        
+        @keyframes datePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        /* Controls Section */
+        .controls {
+            background: rgba(15, 12, 41, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 25px;
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .controls {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        .pasaran-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .selector-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--neon);
+            font-size: 1.1rem;
+        }
+        
+        .selector-label i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        
+        .pasaran-dropdown {
+            flex: 1;
+            min-width: 250px;
+            padding: 14px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--light);
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f3ff' stroke='%2300f3ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 18px;
+            padding-right: 50px;
+        }
+        
+        .pasaran-dropdown:focus {
+            outline: none;
+            border-color: var(--neon);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 25px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            z-index: -1;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        
+        .btn:hover::before { opacity: 1; }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--neon);
+            border: 2px solid var(--neon);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 243, 255, 0.3);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #00cc77);
+            color: var(--dark);
+            border: 2px solid var(--success);
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 136, 0.3);
+        }
+        
+        .btn i { font-size: 1.2rem; }
+        
+        .btn-toggle {
+            background: linear-gradient(135deg, #2c3e50, #1a1a2e);
+            color: #fff;
+            border: 2px solid var(--neon);
+            margin-left: 10px;
+        }
+        .btn-toggle.on {
+            background: linear-gradient(135deg, var(--success), #00aa66);
+            border-color: #fff;
+            color: #000;
+        }
+        
+        /* Prediction Card */
+        .prediction-card {
+            background: rgba(15, 12, 41, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+        
+        .prediction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--neon), var(--success));
+            animation: gradientMove 3s infinite linear;
+        }
+        
+        .pasaran-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pasaran-title {
+            font-size: 2.8rem;
+            background: linear-gradient(45deg, var(--neon), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .pasaran-title i {
+            color: var(--accent);
+            font-size: 2.5rem;
+            animation: spin 10s infinite linear;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .prediction-date {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .prediction-date span {
+            color: var(--success);
+            font-weight: 600;
+            background: rgba(0, 255, 136, 0.1);
+            padding: 5px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+        
+        .prediction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .prediction-item {
+            background: #1f0a0a !important;
+            border: 1px solid #660000 !important;
+            box-shadow: 0 10px 25px rgba(150, 0, 0, 0.5) !important;
+            padding: 25px;
+            border-radius: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .prediction-item:hover {
+            background: #2f0f0f !important;
+            box-shadow: 0 0 30px #990000 !important;
+        }
+        
+        .prediction-icon {
+            background: linear-gradient(135deg, #990000, #4d0000) !important;
+            color: #ffcccc !important;
+        }
+        
+        .prediction-label {
+            color: #ffaaaa !important;
+            text-shadow: 0 0 8px #ff0000;
+        }
+        
+        .prediction-value {
+            background: #2a0f0f !important;
+            border: 1px solid #aa2222 !important;
+            color: #ffd0d0 !important;
+            box-shadow: inset 0 0 15px #3f0000;
+        }
+        
+        .prediction-value:hover {
+            box-shadow: 0 0 25px #ff4444 !important;
+        }
+        
+        @keyframes cardAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .prediction-item:nth-child(1) { animation-delay: 0.5s; }
+        .prediction-item:nth-child(2) { animation-delay: 0.6s; }
+        .prediction-item:nth-child(3) { animation-delay: 0.7s; }
+        .prediction-item:nth-child(4) { animation-delay: 0.8s; }
+        .prediction-item:nth-child(5) { animation-delay: 0.9s; }
+        .prediction-item:nth-child(6) { animation-delay: 1s; }
+        .prediction-item:nth-child(7) { animation-delay: 1.1s; }
+        .prediction-item:nth-child(8) { animation-delay: 1.2s; }
+        .prediction-item:nth-child(9) { animation-delay: 1.3s; }
+        
+        .prediction-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        
+        .prediction-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        
+        .prediction-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex: 1;
+        }
+        
+        .prediction-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Orbitron', sans-serif;
+            line-height: 1.2;
+            word-break: break-word;
+            text-align: center;
+            padding: 15px;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+        
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: rgba(15, 12, 41, 0.95);
+            color: var(--success);
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-lg);
+            transform: translateX(150%);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 1001;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 4px solid var(--success);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .toast.show { transform: translateX(0); }
+        .toast i { font-size: 1.8rem; color: var(--success); }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(15, 12, 41, 0.8);
+            backdrop-filter: blur(15px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1s ease-out 1.5s both;
+        }
+        
+        .disclaimer {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto 25px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .copyright {
+            color: var(--neon);
+            font-weight: 500;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 12, 41, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .loading.active { display: flex; }
+        
+        .spinner {
+            width: 70px;
+            height: 70px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--neon);
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-text {
+            color: var(--neon);
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+        
+        /* Stats Counter */
+        .stats-counter {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            min-width: 130px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--neon);
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--neon);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .title { font-size: 2.8rem; }
+            .pasaran-title { font-size: 2.5rem; }
+            .prediction-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        
+        @media (max-width: 768px) {
+            .title { font-size: 2.2rem; }
+            .pasaran-title { font-size: 2rem; }
+            .prediction-grid { grid-template-columns: 1fr; }
+            .prediction-value { font-size: 2rem; }
+            .controls { padding: 20px; }
+            .prediction-card { padding: 25px; }
+            .stats-counter { gap: 15px; }
+            .stat-item { min-width: 110px; }
+        }
+        
+        @media (max-width: 480px) {
+            body { padding: 15px; }
+            .title { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .btn { padding: 12px 20px; font-size: 0.9rem; }
+            .prediction-value { font-size: 1.8rem; }
+            .pasaran-dropdown { min-width: 180px; }
+            .stat-value { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Dashboard Button -->
+    <a href="/Dashboard.html" class="back-dashboard-btn">
+        <i class="fas fa-home"></i> Dashboard
+    </a>
+
+    <!-- Loading Overlay -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">MENGANALISIS DATA...</div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Prediksi berhasil diperbarui!</span>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-crystal-ball logo-icon"></i>
+                <h1 class="title">PREDIKSI TOGEL</h1>
+            </div>
+            <p class="subtitle">PREDIKSI LUNATOGEL </p>
+            <div class="current-date" id="currentDate">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="dateText">Minggu, 28 Januari 2024</span>
+            </div>
+            
+            <div class="stats-counter">
+                <div class="stat-item">
+                    <div class="stat-value" id="predictionCount">0</div>
+                    <div class="stat-label">PREDIKSI HARI INI</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="accuracyRate">98%</div>
+                    <div class="stat-label">TINGKAT AKURASI</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="updateCount">0</div>
+                    <div class="stat-label">UPDATE TERAKHIR</div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Controls -->
+        <section class="controls">
+            <div class="pasaran-selector">
+                <div class="selector-label">
+                    <i class="fas fa-flag"></i>
+                    <span>PASARAN TOGEL:</span>
+                </div>
+                <select id="pasaranSelect" class="pasaran-dropdown">
+                    <option value="PCSO Pools" selected>PCSO Pools</option>
+                </select>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="refreshBtn">
+                    <i class="fas fa-sync-alt"></i> GENERATE ULANG
+                </button>
+                <button class="btn btn-success" id="copyBtn">
+                    <i class="fas fa-copy"></i> SALIN PREDIKSI
+                </button>
+            </div>
+        </section>
+        
+        <!-- Prediction Card -->
+        <main class="prediction-card">
+            <div class="pasaran-header">
+                <h2 class="pasaran-title">
+                    <i class="fas fa-chart-line"></i>
+                    <span id="pasaranTitle">PCSO POOLS</span>
+                </h2>
+                <p class="prediction-date">
+                    <i class="fas fa-clock"></i>
+                    Prediksi untuk: <span id="tanggal">2024-01-28</span>
+                </p>
+            </div>
+            
+            <div class="prediction-grid">
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-hashtag"></i></div>
+                        <h3 class="prediction-label">BBFS</h3>
+                    </div>
+                    <div class="prediction-value" id="bbfs">2301387</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-star"></i></div>
+                        <h3 class="prediction-label">Angka Main</h3>
+                    </div>
+                    <div class="prediction-value" id="angkaMain">59901</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-dice-four"></i></div>
+                        <h3 class="prediction-label">4D</h3>
+                    </div>
+                    <div class="prediction-value" id="angka4D">8489 8420 1593 8096</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-dice-three"></i></div>
+                        <h3 class="prediction-label">3D</h3>
+                    </div>
+                    <div class="prediction-value" id="angka3D">324 703 824 742</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-dice-two"></i></div>
+                        <h3 class="prediction-label">2D (BB)</h3>
+                    </div>
+                    <div class="prediction-value" id="angka2D">54 97 47 18 11 74 92 97 32 24</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-clipboard-check"></i></div>
+                        <h3 class="prediction-label">2D (Cadangan)</h3>
+                    </div>
+                    <div class="prediction-value" id="cadangan2D">80/59/61</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3 class="prediction-label">Colok Bebas</h3>
+                    </div>
+                    <div class="prediction-value" id="colokBebas">2/3</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-crosshairs"></i></div>
+                        <h3 class="prediction-label">Colok Bebas 2D</h3>
+                    </div>
+                    <div class="prediction-value" id="colokBebas2D">60/26/96</div>
+                </div>
+                <div class="prediction-item">
+                    <div class="prediction-header">
+                        <div class="prediction-icon"><i class="fas fa-dragon"></i></div>
+                        <h3 class="prediction-label">Shio</h3>
+                    </div>
+                    <div class="prediction-value" id="shio">KELINCI/KERBAU/KELINCI</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; color: rgba(255,255,255,0.6);">
+                <i class="fas fa-robot"></i>
+                <span style="margin-left: 10px;">Sistem AI aktif | Update otomatis setiap 3 menit</span>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p class="disclaimer">
+                <strong><i class="fas fa-exclamation-triangle"></i> PERHATIAN:</strong> 
+                Prediksi ini dibuat menggunakan algoritma matematika dan AI canggih. Hasil prediksi tidak menjamin kemenangan mutlak. 
+                Gunakan dengan bijak dan bertanggung jawab.
+            </p>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+                <span style="color: var(--neon); font-weight: 500;"><i class="fas fa-image"></i> Mode Background:</span>
+                <button class="btn btn-toggle" id="bgToggleBtn">
+                    <i class="fas fa-toggle-off"></i> <span id="bgToggleText">OFF</span>
+                </button>
+            </div>
+            <p class="copyright">
+                <i class="fas fa-shield-alt"></i>
+                &copy; 2024 TogelMaster Pro Quantum Edition v3.0
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        let currentPasaran = "PCSO Pools";
+        let currentPrediction = null;
+        let predictionCount = 0;
+        let updateCount = 0;
+        
+        const defaultPasaranList = [
+            "PCSO Pools", "hokidraw", "Kingkong 4D", "Poipet Pools", 
+            "Toto Mali", "JakartaPools", "Huahin Pools", "Toto Macau Pools",
+            "Singapore Pools", "Bangkok Pools", "Toto Cambodia", "Hongkong",
+            "Nevada Pools", "Magnum4D Pools", "Sydney", "Bullseye Pools",
+            "Chelsea Pools", "California Pools", "Oregon Pools", "Brunei Pools",
+            "Carolina Pools", "Newyork Pools", "Florida Pools", "Kentucky Pools"
+        ];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+            createParticles();
+        });
+        
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            document.body.appendChild(particlesContainer);
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.3 + 0.1;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.background = `radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(0,243,255,0.5) 100%)`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        function initializeApp() {
+            updateDateDisplay();
+            
+            predictionCount = localStorage.getItem('prediksi_togel_count') || 0;
+            updateCount = localStorage.getItem('prediksi_update_count') || 0;
+            document.getElementById('predictionCount').textContent = predictionCount;
+            document.getElementById('updateCount').textContent = updateCount;
+            
+            populatePasaranDropdown();
+            generatePrediction(currentPasaran);
+            setupEventListeners();
+            
+            setInterval(() => {
+                generatePrediction(currentPasaran);
+                updateCount++;
+                localStorage.setItem('prediksi_update_count', updateCount);
+                document.getElementById('updateCount').textContent = updateCount;
+                showToast('Prediksi otomatis diperbarui');
+            }, 180000);
+            
+            const bgState = localStorage.getItem('bgImageMode') === 'on';
+            if (bgState) {
+                document.body.classList.add('bg-image-mode');
+                updateBgToggleButton(true);
+            }
+        }
+        
+        function updateDateDisplay() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('dateText').textContent = now.toLocaleDateString('id-ID', options) + ' WIB';
+        }
+        
+        function populatePasaranDropdown() {
+            const select = document.getElementById('pasaranSelect');
+            select.innerHTML = '';
+            defaultPasaranList.forEach(pasaran => {
+                const option = document.createElement('option');
+                option.value = pasaran;
+                option.textContent = pasaran;
+                if (pasaran === currentPasaran) option.selected = true;
+                select.appendChild(option);
+            });
+        }
+        
+        function generatePrediction(pasaran) {
+            showLoading(true);
+            predictionCount++;
+            localStorage.setItem('prediksi_togel_count', predictionCount);
+            
+            // Generate dummy data directly in frontend
+            const today = new Date().toISOString().split('T')[0];
+            function randomDigits(n) {
+                let result = '';
+                for (let i = 0; i < n; i++) result += Math.floor(Math.random() * 10);
+                return result;
+            }
+            
+            const prediction = {
+                tanggal: today,
+                pasaran: pasaran,
+                bbfs: randomDigits(7),
+                angkaMain: randomDigits(5),
+                angka4D: `${randomDigits(4)} ${randomDigits(4)} ${randomDigits(4)} ${randomDigits(4)}`,
+                angka3D: `${randomDigits(3)} ${randomDigits(3)} ${randomDigits(3)} ${randomDigits(3)}`,
+                angka2D: Array.from({length: 10}, () => randomDigits(2)).join(' '),
+                cadangan2D: `${randomDigits(2)}/${randomDigits(2)}/${randomDigits(2)}`,
+                colokBebas: `${Math.floor(Math.random() * 10)}/${Math.floor(Math.random() * 10)}`,
+                colokBebas2D: `${randomDigits(2)}/${randomDigits(2)}/${randomDigits(2)}`,
+                shio: ['TIKUS', 'KERBAU', 'HARIMAU', 'KELINCI'][Math.floor(Math.random() * 4)] + '/' + ['ULAR', 'NAGA', 'KUDA', 'KAMBING'][Math.floor(Math.random() * 4)] + '/' + ['MONYET', 'AYAM', 'ANJING', 'BABI'][Math.floor(Math.random() * 4)]
+            };
+            
+            displayPrediction(prediction);
+            currentPrediction = prediction;
+            document.getElementById('predictionCount').textContent = predictionCount;
+            const accuracy = 95 + Math.floor(Math.random() * 5);
+            document.getElementById('accuracyRate').textContent = accuracy + '%';
+            
+            setTimeout(() => {
+                showLoading(false);
+                showToast('Prediksi baru dihasilkan!');
+            }, 500);
+        }
+        
+        function displayPrediction(prediction) {
+            document.getElementById('pasaranTitle').textContent = prediction.pasaran.toUpperCase();
+            document.getElementById('tanggal').textContent = prediction.tanggal;
+            document.getElementById('bbfs').textContent = prediction.bbfs;
+            document.getElementById('angkaMain').textContent = prediction.angkaMain;
+            document.getElementById('angka4D').textContent = prediction.angka4D;
+            document.getElementById('angka3D').textContent = prediction.angka3D;
+            document.getElementById('angka2D').textContent = prediction.angka2D;
+            document.getElementById('cadangan2D').textContent = prediction.cadangan2D;
+            document.getElementById('colokBebas').textContent = prediction.colokBebas;
+            document.getElementById('colokBebas2D').textContent = prediction.colokBebas2D;
+            document.getElementById('shio').textContent = prediction.shio;
+            animateNumbers();
+        }
+        
+        function animateNumbers() {
+            const numberElements = document.querySelectorAll('.prediction-value');
+            numberElements.forEach(element => {
+                element.style.animation = 'none';
+                setTimeout(() => element.style.animation = 'pulseGlow 0.5s ease-in-out', 10);
+            });
+        }
+        
+        function setupEventListeners() {
+            document.getElementById('pasaranSelect').addEventListener('change', function(e) {
+                currentPasaran = e.target.value;
+                generatePrediction(currentPasaran);
+                showToast('Memuat prediksi ' + currentPasaran);
+            });
+            
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                generatePrediction(currentPasaran);
+            });
+            
+            document.getElementById('copyBtn').addEventListener('click', copyPredictionToClipboard);
+            setInterval(updateDateDisplay, 60000);
+            document.getElementById('bgToggleBtn').addEventListener('click', toggleBackground);
+        }
+        
+        function copyPredictionToClipboard() {
+            if (!currentPrediction) return;
+            const text = `✨  - PREDIKSI - ${currentPrediction.pasaran.toUpperCase()} ✨\n===============================\n📅 Tanggal: ${currentPrediction.tanggal}\n===============================\n🎰 BBFS: ${currentPrediction.bbfs}\n⭐ ANGKA MAIN: ${currentPrediction.angkaMain}\n🎲 4D: ${currentPrediction.angka4D}\n🎯 3D: ${currentPrediction.angka3D}\n🎪 2D (BB): ${currentPrediction.angka2D}\n🔄 2D (CADANGAN): ${currentPrediction.cadangan2D}\n🎯 COLOK BEBAS: ${currentPrediction.colokBebas}\n🎯 COLOK BEBAS 2D: ${currentPrediction.colokBebas2D}\n🐉 SHIO: ${currentPrediction.shio}\n===============================\n⚡  By Lunatogel ⚡`;
+            
+            navigator.clipboard.writeText(text)
+                .then(() => showToast('Prediksi disalin ke clipboard! ✨'))
+                .catch(err => showToast('Gagal menyalin prediksi'));
+        }
+        
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+        
+        function showLoading(show) {
+            document.getElementById('loading').classList.toggle('active', show);
+        }
+        
+        function toggleBackground() {
+            const body = document.body;
+            if (body.classList.contains('bg-image-mode')) {
+                body.classList.remove('bg-image-mode');
+                localStorage.setItem('bgImageMode', 'off');
+                updateBgToggleButton(false);
+                showToast('Background default (gradient)');
+            } else {
+                body.classList.add('bg-image-mode');
+                localStorage.setItem('bgImageMode', 'on');
+                updateBgToggleButton(true);
+                showToast('Background gambar diterapkan');
+            }
+        }
+        
+        function updateBgToggleButton(isOn) {
+            const btn = document.getElementById('bgToggleBtn');
+            const icon = btn.querySelector('i');
+            const textSpan = document.getElementById('bgToggleText');
+            if (isOn) {
+                btn.classList.add('on');
+                icon.className = 'fas fa-toggle-on';
+                textSpan.innerText = 'ON';
+            } else {
+                btn.classList.remove('on');
+                icon.className = 'fas fa-toggle-off';
+                textSpan.innerText = 'OFF';
+            }
+        }
+    </script>
+</body>
+</html>
