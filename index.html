@@ -3,312 +3,191 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - AURA.OS</title>
+  <title>Sign In - AURA.OS</title>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
   <style>
     :root {
-      --bg-deep: #0f172a;
-      --primary: #6366f1;
-      --accent-cyan: #00f0ff;
-      --accent-violet: #bc13fe;
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --text-main: #f8fafc;
-      --text-dim: #94a3b8;
-      --font-head: 'Space Grotesk', sans-serif;
-      --font-body: 'Outfit', sans-serif;
-      --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
-      --shadow-glow-cyan: 0 0 25px rgba(0, 240, 255, 0.4);
+      --bg-deep: #0b0d13; --bg-surface: #12141c; --bg-elevated: #181a24;
+      --border-subtle: rgba(255,255,255,0.06); --border-medium: rgba(255,255,255,0.1);
+      --text-main: #f8fafc; --text-dim: #7c8db5; --text-faint: #4a5568;
+      --accent-main: #6366f1; --accent-cyan: #00f0ff; --accent-violet: #bc13fe;
+      --accent-glow: rgba(99, 102, 241, 0.3); --accent-danger: #ef4444;
     }
-    
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Outfit', sans-serif; display: flex; min-height: 100vh; background: var(--bg-deep); }
+
+    /* LEFT SIDE (LOGIN FORM) */
+    .login-side {
+      flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 40px; background: var(--bg-deep); position: relative; border-right: 1px solid var(--border-subtle);
+    }
+    .form-box { width: 100%; max-width: 380px; }
+    .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-main); margin-bottom: 8px; }
+    .logo-text span { color: var(--accent-main); }
+    .subtitle { color: var(--text-dim); font-size: 15px; margin-bottom: 32px; }
     
-    body {
-      background: var(--bg-deep);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
+    .input-group { margin-bottom: 20px; position: relative; }
+    .input-label { display: block; font-size: 13px; font-weight: 600; color: var(--text-dim); margin-bottom: 8px; }
+    .input-field {
+      width: 100%; padding: 14px 16px 14px 45px; background: var(--bg-surface); border: 1px solid var(--border-medium);
+      border-radius: 10px; font-family: 'Outfit', sans-serif; font-size: 15px; color: var(--text-main); transition: all 0.2s;
     }
+    .input-field:focus { outline: none; border-color: var(--accent-main); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .input-icon { position: absolute; left: 16px; top: 38px; color: var(--text-faint); font-size: 16px; }
 
-    .noise-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 1; opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    .btn-primary {
+      width: 100%; padding: 14px; background: var(--accent-main); color: #fff; border: none; border-radius: 10px;
+      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s;
+      display: flex; justify-content: center; align-items: center; gap: 8px; margin-bottom: 12px; box-shadow: 0 4px 12px var(--accent-glow);
     }
-
-    .bg-glow {
-      position: fixed; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, transparent 70%);
-      border-radius: 50%; pointer-events: none; z-index: 0;
+    .btn-primary:hover { background: #4f46e5; transform: translateY(-1px); }
+    .btn-secondary {
+      width: 100%; padding: 14px; background: var(--bg-surface); color: var(--text-dim); border: 1px solid var(--border-medium); border-radius: 10px;
+      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 16px; cursor: pointer; transition: 0.2s;
     }
-    .glow-1 { top: -300px; right: -300px; }
-    .glow-2 { bottom: -300px; left: -300px; background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 70%); }
+    .btn-secondary:hover { background: var(--bg-elevated); color: var(--text-main); }
 
-    .login-card {
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 24px;
-      border: 1px solid var(--glass-border);
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      padding: 50px 40px;
-      z-index: 10;
-      box-shadow: var(--shadow-glow);
-      animation: fadeInUp 0.6s ease forwards;
+    .footer-info { margin-top: 32px; text-align: center; font-size: 12px; color: var(--text-faint); }
+    .ip-badge { display: inline-block; background: var(--bg-surface); padding: 4px 10px; border-radius: 20px; font-family: monospace; margin-bottom: 8px; border: 1px solid var(--border-subtle); }
+
+    /* RIGHT SIDE (BRANDING) */
+    .brand-side {
+      flex: 1; background: var(--bg-deep); color: #fff; display: flex; flex-direction: column; justify-content: center;
+      padding: 60px; position: relative; overflow: hidden;
     }
-
-    .login-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: 24px; padding: 2px;
-      background: linear-gradient(45deg, var(--accent-cyan), var(--accent-violet), transparent);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      opacity: 0.5; pointer-events: none;
+    .brand-side::before {
+      content: ''; position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+      top: -200px; right: -200px; border-radius: 50%;
     }
-
-    .logo-section {
-      text-align: center;
-      margin-bottom: 40px;
+    .brand-side::after {
+      content: ''; position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+      bottom: -150px; left: -150px; border-radius: 50%;
     }
+    .brand-content { position: relative; z-index: 2; max-width: 500px; }
+    .brand-logo { width: 50px; height: 50px; background: linear-gradient(135deg, var(--accent-main), var(--accent-violet)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 32px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .brand-title { font-family: 'Space Grotesk', sans-serif; font-size: 42px; font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+    .feature-list { display: flex; flex-direction: column; gap: 20px; }
+    .feature-item { display: flex; align-items: center; gap: 16px; }
+    .feature-icon { width: 40px; height: 40px; background: var(--bg-surface); border: 1px solid var(--border-medium); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-main); }
+    .feature-text h4 { font-size: 16px; font-weight: 600; color: var(--text-main); }
+    .feature-text p { font-size: 14px; color: var(--text-dim); }
+    .brand-footer { position: absolute; bottom: 30px; left: 60px; color: var(--text-faint); font-size: 13px; }
 
-    .logo-icon {
-      width: 80px; height: 80px;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-violet));
-      border-radius: 20px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 36px; color: white;
-      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
-      margin: 0 auto 20px auto;
-    }
+    /* ALERT */
+    .alert-box { padding: 12px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; display: none; align-items: center; gap: 10px; }
+    .alert-error { background: rgba(239, 68, 68, 0.1); color: var(--accent-danger); border: 1px solid rgba(239, 68, 68, 0.3); }
+    .alert-success { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
 
-    .logo-text h1 {
-      font-family: var(--font-head);
-      font-size: 28px; font-weight: 700;
-      background: linear-gradient(to right, #fff, var(--accent-cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    
-    .logo-text p {
-      color: var(--text-dim); font-size: 14px; margin-top: 8px;
-    }
-
-    .form-group {
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .form-label {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 12px; font-weight: 600; font-size: 14px;
-      color: var(--text-dim);
-    }
-
-    .form-input {
-      width: 100%;
-      padding: 16px 20px 16px 50px;
-      background: rgba(0, 0, 0, 0.3);
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      color: var(--text-main);
-      font-family: var(--font-body); font-size: 15px;
-      transition: all 0.3s;
-    }
-
-    .form-input:focus {
-      outline: none;
-      border-color: var(--accent-cyan);
-      box-shadow: var(--shadow-glow-cyan);
-    }
-
-    .input-icon {
-      position: absolute; left: 18px; top: 44px;
-      color: var(--text-dim); font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    .form-input:focus + .input-icon, .form-input:not(:placeholder-shown) + .input-icon {
-      color: var(--accent-cyan);
-    }
-
-    .btn-login {
-      width: 100%;
-      padding: 16px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--accent-violet));
-      border: none;
-      color: white; font-weight: 700; font-size: 16px;
-      cursor: pointer; transition: all 0.3s;
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-      margin-top: 10px;
-    }
-
-    .btn-login:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(99, 102, 241, 0.5);
-    }
-
-    .btn-login:disabled {
-      opacity: 0.7; cursor: not-allowed; transform: none;
-    }
-
-    .alert-box {
-      padding: 16px;
-      border-radius: 12px;
-      margin-bottom: 24px;
-      font-size: 14px;
-      display: none;
-      align-items: center;
-      gap: 12px;
-      animation: fadeInUp 0.4s ease;
-    }
-
-    .alert-error {
-      background: rgba(231, 76, 60, 0.15);
-      border: 1px solid rgba(231, 76, 60, 0.3);
-      color: #e74c3c;
-    }
-
-    .alert-success {
-      background: rgba(46, 204, 113, 0.15);
-      border: 1px solid rgba(46, 204, 113, 0.3);
-      color: #2ecc71;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .spinner {
-      width: 20px; height: 20px;
-      border: 3px solid transparent;
-      border-top: 3px solid white;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      display: none;
-    }
-
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
+    @media (max-width: 900px) { .brand-side { display: none; } }
   </style>
 </head>
 <body>
-  <div class="noise-overlay"></div>
-  <div class="bg-glow glow-1"></div>
-  <div class="bg-glow glow-2"></div>
+  <!-- LEFT: LOGIN FORM -->
+  <div class="login-side">
+    <div class="form-box">
+      <div class="logo-text">AURA<span>.OS</span></div>
+      <h2 class="subtitle">Masuk ke AURA.OS dengan akun staff yang sudah terdaftar.</h2>
 
-  <div class="login-card">
-    <div class="logo-section">
-      <div class="logo-icon"><i class="fas fa-shield-halved"></i></div>
-      <div class="logo-text">
-        <h1>AURA.OS LOGIN</h1>
-        <p>Authorized Personnel Only</p>
+      <div class="alert-box" id="alertBox">
+        <i class="fas fa-exclamation-circle" id="alertIcon"></i>
+        <span id="alertMsg"></span>
+      </div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <label class="input-label">Username / Gmail</label>
+          <input type="text" id="username" class="input-field" placeholder="Masukkan username" required>
+          <i class="fas fa-user input-icon"></i>
+        </div>
+        <div class="input-group">
+          <label class="input-label">Password</label>
+          <input type="password" id="password" class="input-field" placeholder="Masukkan password" required>
+          <i class="fas fa-lock input-icon"></i>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btnLogin">
+          <i class="fas fa-arrow-right-to-bracket"></i> Sign In
+        </button>
+        <button type="button" class="btn-secondary" onclick="showAlert('Fitur register belum dibuka!', 'error')">
+          <i class="fas fa-user-plus"></i> Register Akun Baru
+        </button>
+      </form>
+
+      <div class="footer-info">
+        <div class="ip-badge">IP: 192.168.1.1</div>
+        <p>Authorized personnel only. All activities are monitored.</p>
       </div>
     </div>
+  </div>
 
-    <div class="alert-box" id="alertBox">
-      <i class="fas fa-exclamation-circle" id="alertIcon"></i>
-      <span id="alertMsg"></span>
+  <!-- RIGHT: BRANDING -->
+  <div class="brand-side">
+    <div class="brand-content">
+      <div class="brand-logo"><i class="fas fa-shield-halved"></i></div>
+      <h1 class="brand-title">Fortis fortuna adiuvat </h1>
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-lock"></i></div>
+          <div class="feature-text"><h4>Secure Session Access</h4><p>Enkripsi end-to-end untuk keamanan maksimal.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+          <div class="feature-text"><h4>Fast Dashboard Login</h4><p>Akses langsung ke panel tanpa delay.</p></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon"><i class="fas fa-headset"></i></div>
+          <div class="feature-text"><h4>24/7 Portal Ready</h4><p>Sistem monitoring yang selalu aktif.</p></div>
+        </div>
+      </div>
     </div>
-
-    <form id="loginForm" onsubmit="handleLogin(event)">
-      <div class="form-group">
-        <label class="form-label">Username</label>
-        <input type="text" id="username" class="form-input" placeholder="Masukkan username" required autocomplete="off">
-        <i class="fas fa-user input-icon"></i>
-      </div>
-
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
-        <i class="fas fa-lock input-icon"></i>
-      </div>
-
-      <button type="submit" class="btn-login" id="btnLogin">
-        <div class="spinner" id="spinner"></div>
-        <i class="fas fa-sign-in-alt" id="btnIcon"></i>
-        <span id="btnText">Masuk ke Sistem</span>
-      </button>
-    </form>
+    <div class="brand-footer">Authorized staff access only.</div>
   </div>
 
   <script>
-    let isLoggingIn = false;
-
-    // ── DATA DUMMY UNTUK LOGIN ──
-    // Karena tidak ada backend (Google Apps Script), kita buatkan akun dummy di sini.
-    // Silakan ubah username/password di bawah sesuai keinginan.
-    const DUMMY_USERS = [
-      { username: "admin", password: "admin123", role: "ADMIN" },
-      { username: "operator", password: "operator123", role: "OPERATOR" }
-    ];
-
     function handleLogin(e) {
       e.preventDefault();
-      if (isLoggingIn) return;
-
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
-
-      if (!username || !password) {
-        showAlert('Harap isi Username dan Password!', 'error');
-        return;
-      }
-
-      isLoggingIn = true;
+      
+      document.getElementById('btnLogin').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memverifikasi...';
       document.getElementById('btnLogin').disabled = true;
-      document.getElementById('spinner').style.display = 'block';
-      document.getElementById('btnIcon').style.display = 'none';
-      document.getElementById('btnText').textContent = 'Memverifikasi...';
 
-      // Simulasi panggilan ke Backend (Delay 1.5 detik)
-      setTimeout(function() {
-        let userFound = DUMMY_USERS.find(u => u.username === username && u.password === password);
-
-        isLoggingIn = false;
+      fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('btnLogin').innerHTML = '<i class="fas fa-arrow-right-to-bracket"></i> Sign In';
         document.getElementById('btnLogin').disabled = false;
-        document.getElementById('spinner').style.display = 'none';
-        document.getElementById('btnIcon').style.display = 'inline';
-        document.getElementById('btnText').textContent = 'Masuk ke Sistem';
 
-        if (userFound) {
-          showAlert('Login berhasil! Mengarahkan ke Dashboard...', 'success');
-          
-          // Arahkan ke Dashboard.html setelah 1.5 detik
-          setTimeout(() => {
-            // Ganti URL ke Dashboard.html di Cloudflare/GitHub Anda
-            window.location.href = '/Dashboard.html?authToken=' + encodeURIComponent(userFound.username);
-          }, 1500);
+        if (data.success) {
+          showAlert(data.message, 'success');
+          localStorage.setItem('aura_auth_token', data.user.username);
+          localStorage.setItem('aura_user_role', data.user.role);
+          setTimeout(() => window.location.href = '/Dashboard.html', 1000);
         } else {
-          showAlert('Username atau Password salah!', 'error');
+          showAlert(data.error, 'error');
         }
-      }, 1500); // 1500ms = 1.5 detik
+      })
+      .catch(() => {
+        document.getElementById('btnLogin').innerHTML = '<i class="fas fa-arrow-right-to-bracket"></i> Sign In';
+        document.getElementById('btnLogin').disabled = false;
+        showAlert('Kesalahan koneksi ke server.', 'error');
+      });
     }
 
     function showAlert(message, type) {
       const box = document.getElementById('alertBox');
       const icon = document.getElementById('alertIcon');
       const msg = document.getElementById('alertMsg');
-
       box.style.display = 'flex';
       box.className = `alert-box alert-${type}`;
       icon.className = type === 'error' ? 'fas fa-exclamation-circle' : 'fas fa-check-circle';
       msg.textContent = message;
-
-      if (type === 'error') {
-        setTimeout(() => { box.style.display = 'none'; }, 5000);
-      }
+      if (type === 'error') setTimeout(() => box.style.display = 'none', 5000);
     }
   </script>
 </body>
