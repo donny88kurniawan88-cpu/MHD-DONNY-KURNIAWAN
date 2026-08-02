@@ -1,0 +1,8 @@
+{
+  "name": "aura-os-dashboard",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {}
+}
