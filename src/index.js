@@ -2,18 +2,6 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Header keamanan agar tidak diblokir browser
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type'
-    };
-
-    // Tangani preflight request dari browser
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
-    }
-
     // 1. Routing Halaman HTML
     if (url.pathname === '/') {
       return env.ASSETS.fetch(new Request(new URL('/Dashboard.html', request.url), request));
@@ -41,20 +29,20 @@ export default {
             success: true, 
             message: 'Login berhasil!', 
             user: { username: user.username, role: user.role } 
-          }, { headers: corsHeaders });
+          });
         } 
         // Jika user tidak ditemukan
         else {
           return Response.json({ 
             success: false, 
             error: 'Username atau Password salah!' 
-          }, { headers: corsHeaders });
+          });
         }
       } catch (err) {
         return Response.json({ 
           success: false, 
           error: 'Server Error: ' + err.message 
-        }, { status: 500, headers: corsHeaders });
+        }, { status: 500 });
       }
     }
 
@@ -62,9 +50,9 @@ export default {
     if (url.pathname === '/api/users') {
       try {
         const { results } = await env.DB.prepare("SELECT * FROM users").all();
-        return Response.json(results, { headers: corsHeaders });
+        return Response.json(results);
       } catch (err) {
-        return Response.json({ error: 'Gagal mengambil data' }, { status: 500, headers: corsHeaders });
+        return Response.json({ error: 'Gagal mengambil data' }, { status: 500 });
       }
     }
 
